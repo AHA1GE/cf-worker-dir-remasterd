@@ -20,7 +20,7 @@ function generateStaticHTML() {
         <body>
           <div id="top-part-of-html"></div>
           <div id="main-part-of-html"></div>
-          <footer><div class="footer">Powered by<a class="ui label" href="https://github.com/chenkerun2000/cf-worker-dir" target="_blank" rel="noopener"><i class="github icon"></i>Cf-Worker-Dir</a> © Based on<a class="ui label"><i class="balance scale icon"></i>MIT License</a></div></footer>
+          <footer><div class="footer">Powered by<a class="ui label" href="https://github.com/AHA1GE/cf-worker-dir-remasterd" target="_blank" rel="noopener"><i class="github icon"></i>Cf-Worker-Dir</a> © Based on<a class="ui label"><i class="balance scale icon"></i>MIT License</a></div></footer>
   
           <script src="/dynamic.js"></script>
           <style></style>
