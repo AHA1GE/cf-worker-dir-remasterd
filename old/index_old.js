@@ -155,32 +155,11 @@ export default {
 function getFavicon(getter, url) {
   const faviconUrl = getter + url;
   return faviconUrl;
-  // return fetch(faviconUrl).then((response) => {
-  //   if (response.status !== 200) {
-  //     throw new Error("Failed to fetch favicon for ${url}");
-  //   }
-
-  //   const contentType = response.headers.get("content-type");
-  //   if (contentType === "image/x-icon") {
-  //     // Favicon is accessible directly via the server, so return the URL
-  //     return Promise.resolve(faviconUrl.toString());
-  //   } else if (contentType === "text/plain") {
-  //     // Favicon has to be accessed by the client, so extract the URL from the plaintext response
-  //     return response.text().then((responseText) => {
-  //       const faviconLink = responseText.trim();
-  //       return Promise.resolve(faviconLink);
-  //     });
-  //   } else {
-  //     throw new Error(
-  //       `Unexpected content type for favicon response: ${contentType}`
-  //     );
-  //   }
-  // });
 }
 
 /** Render Functions
  *  渲染模块函数
- */
+ **/
 
 function renderIndex(getter) {
   const footer = el(
