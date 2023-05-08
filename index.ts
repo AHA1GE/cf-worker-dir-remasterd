@@ -1,12 +1,12 @@
 // 使用常量存储的网页自定义设置，在这里修改网页的标题、副标题、logo、搜索引擎等。
-const config = {
+let config = {
 
   // 配置来源选项
   useLocal_CONFIG: true, //use this config or not
   useLocal_HEAD: true, //use local dynamicHeads or not
   useLocal_JS: true, //use local dynamic.js or not
   useLocal_CSS: true, //use local dynamic.css or not
-  remoteURI: "", //remote resources URI
+  remoteURI: "https://raw.githubusercontent.com/AHA1GE/cf-worker-dir-remasterd/dev/", //remote resources URI
   faviconGetter: "https://favicon.ahaigege.com/?url=", //favicon getter
 
   // 网页内容选项
@@ -135,15 +135,16 @@ const config = {
     },
   ],
 };
-
 // 处理请求的函数
 const handler: ExportedHandler = {
   async fetch(request: Request, env: any) {
+    try {
+      if (!convertToBoolean(env.useLocal_CONFIG) && env.remoteURI) {
+        config = await (await fetch(env.remoteURI + "config.json")).json();
+      } else if ((!convertToBoolean(env.useLocal_CONFIG)) && (!env.remoteURI)) { throw new Error("No remote resources URI found."); }
+    } catch (e) { console.log(e); }
     //尝试从环境变量中获取配置
     try {
-      if (!convertToBoolean(env.useLocal_CONFIG)) {
-        config.useLocal_CONFIG = env.useLocal_CONFIG;
-      }
       if (!convertToBoolean(env.useLocal_HEAD)) {
         config.useLocal_HEAD = env.useLocal_HEAD;
       }
@@ -159,30 +160,15 @@ const handler: ExportedHandler = {
       if (!env.faviconGetter) {
         config.faviconGetter = env.faviconGetter;
       }
-      if ((!convertToBoolean(env.useLocal_CONFIG)) && (!env.remoteURI)) { throw new Error("No remote resources URI found."); }
     } catch (e) { console.log(e); }
 
     // 构造 HTML 页面
-    const html_FINAL = renderHTML();
+    const html_FINAL = await renderHTML();
     return new Response(html_FINAL, { headers: { "content-type": "text/html;charset=UTF-8", }, });
   },
 };
 export default handler;
 
-/**
- * 生成 HTML 页面的函数
- * @returns {string}  以字符串返回的页面
- * @description 该函数会生成一个 HTML 页面。
- **/
-function renderHTML(): string {
-  const staticHTML: string = generateStaticHTML();
-  const dynamicHead: string = generateDynamicHead();
-  const dynamicJS: string = generateDynamicJS();
-  const dynamicCSS: string = generateDynamicCSS();
-  let html = staticHTML.replace('<head src="/dynamicHeads.html"></head>', `${dynamicHead}`).replace('<script src="/dynamic.js"></script>', `${dynamicJS}`).replace('<style src="/dynamic.css"></style>', `${dynamicCSS}`);
-  html = html
-  return html;
-}
 /**
  * 用来创建element的工具函数
  * @param tag 标签名
@@ -193,6 +179,17 @@ function renderHTML(): string {
  **/
 function element(tag: string, attrs: string[], content: string): string {
   return `<${tag} ${attrs.join(" ")}>${content}</${tag}>`;
+}
+
+/**
+ * 用来创建头element的工具函数
+ * @param tag 标签名
+ * @param attrs 属性数组
+ * @returns {string}  以字符串返回的element
+ * @description 该函数会生成一个不关闭的 HTML element。
+ **/
+function headElement(tag: string, attrs: string[]): string {
+  return `<${tag} ${attrs.join(" ")}>`;
 }
 
 /**
@@ -214,6 +211,21 @@ function convertToBoolean(input: unknown): boolean | never {
   } else {
     throw new Error("Invalid input type");
   }
+}
+
+/**
+ * 生成 HTML 页面的函数
+ * @returns {string}  以字符串返回的页面
+ * @description 该函数会生成一个 HTML 页面。
+ **/
+async function renderHTML(): Promise<string> {
+  const staticHTML: string = generateStaticHTML();
+  const dynamicHead: string = await generateDynamicHead();
+  const dynamicJS: string = generateDynamicJS();
+  const dynamicCSS: string = generateDynamicCSS();
+  let html = staticHTML.replace('<head src="/dynamicHeads.html"></head>', `${dynamicHead}`).replace('<script src="/dynamic.js"></script>', `${dynamicJS}`).replace('<style src="/dynamic.css"></style>', `${dynamicCSS}`);
+  html = html
+  return html;
 }
 
 /**
@@ -241,9 +253,41 @@ function generateStaticHTML(): string {
  * 生成head的函数
  * @returns {string} 以字符串返回的head
  */
-function generateDynamicHead(): string {
-  return `
-  `
+async function generateDynamicHead(): Promise<string> {
+  const headList: string[] = [
+    headElement("meta", ["charset=\"UTF-8\""]),
+    headElement("meta", ["name=\"description\" content=\"AHAI Navigation\""]),
+    headElement("meta", ["name=\"keywords\" content=\"AHAI, AHAIGEGE, Navigation, AHAI Navigation\""]),
+    headElement("meta", ["name=\"viewport\" content=\"width=device-width, initial-scale=1.0\""]),
+    headElement("meta", ["http-equiv=\"X-UA-Compatible\" content=\"ie=edge\""]),
+    element("title", [], `${config.title} - ${config.subtitle}`),
+    headElement("link", ["rel=\"apple-touch-icon\"", "sizes=\"180x180\"", "href=\"/apple-touch-icon.png\""]),
+    headElement("link", ["rel=\"icon\"", "href=\"https://ysun.site/images/favicon.ico\""]),
+  ]
+  if (!config.useLocal_CSS) {
+    const remoteCSSURI: string = `${config.remoteURI}index.css`;
+    headList.push(headElement("link", [`href="${remoteCSSURI}"`, "rel=\"stylesheet\""]),);
+  }
+  else { headList.push(headElement("link", ["href=\"https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css\"", "rel=\"stylesheet\""]),); }
+  const head: string = headList.join("\n");
+  if (config.useLocal_HEAD) { return head; }
+  else {
+    const remoteHeadURI: string = `${config.remoteURI}HEAD.html`;
+
+    try {
+
+      // Perform a fetch to get the content of the remote file
+      const response = await fetch(remoteHeadURI);
+      const html = await response.text();
+
+      // Return the fetched text or an empty string if the response is not OK
+      return response.ok ? html : '';
+    } catch (error) {
+      console.error(`Error fetching remote HEAD: ${error}`);
+      return head;
+    }
+  }
+
 }
 
 /**
@@ -260,10 +304,13 @@ function generateDynamicJS(): string {
         mainPartOfHtml.textContent = 'This is the second dynamic div.';
       });
       `
-  if (config.useLocal_CONFIG && config.useLocal_JS) {//如果使用本地资源返回用于替换动态div的js
+  if (config.useLocal_JS) {//如果使用本地资源返回用于替换动态div的js
     const dynamicDiv1 = renderDynamicDiv1();
     const dynamicDiv2 = renderDynamicDiv2();
-    const pageJS = `<script src="https://v1.hitokoto.cn/?encode=js&amp;select=%23hitokoto" defer=""></script>
+    const pageJS = `
+      <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/semantic-superhero-ui-css@1.0.10/semantic.min.js"></script>
+      <script src="https://v1.hitokoto.cn/?encode=js&amp;select=%23hitokoto" defer=""></script>
       <script>
           $('#sengine a').on('click', function (e) {
               $('#sengine a.active').toggleClass('active');
@@ -290,7 +337,7 @@ function generateDynamicJS(): string {
   }
   else {//如果使用远程资源返回远程js
     const remoteJS = `<script src="remote.js" defer=""></script>`
-    return remoteJS.replace(`remote.js`, config.remoteURI + "/index.js");
+    return remoteJS.replace(`remote.js`, config.remoteURI + "index.js");
   }
 }
 
@@ -299,20 +346,242 @@ function generateDynamicJS(): string {
  * @returns {string} 以字符串返回的 css
  */
 function generateDynamicCSS(): string {
-  if (config.useLocal_CONFIG && config.useLocal_CSS) {//如果使用本地资源返回css
+  if (config.useLocal_CSS) {//如果使用本地资源返回css
     return localCSS
   }
   else {
-    const remoteCSS = `<style></style>`
-    return remoteCSS; //use generateDynamicHead() to link to remote css
+    const noLocalCSS = `<style></style>`
+    return noLocalCSS; //use generateDynamicHead() to link to remote css
   }
 }
 
+/**
+ * 渲染第一个动态 div 的函数
+ * @returns {string} 以字符串返回的第一个Div
+ **/
 function renderDynamicDiv1(): string {
-  return element("", [""], "")
+  const item = (template, name) =>
+    element("a", ['class="item"', `data-url="${template}"`], name);
+
+  var nav = element(
+    "div",
+    ['class="ui large secondary inverted menu"'],
+    element("div", ['class="item"'], element("p", ['id="hitokoto"'], "条条大路通罗马"))
+  );
+  var title = element(
+    "h1",
+    ['class="ui inverted header"'],
+    element("i", [`class="${config.logo_icon} icon"`], "") +
+    element(
+      "div",
+      ['class="content"'],
+      config.title + element("div", ['class="sub header"'], config.subtitle)
+    )
+  );
+  var menu = element(
+    "div",
+    [
+      'id="sengine"',
+      'class="ui bottom attached tabular inverted secondary menu"',
+    ],
+    element("div", ['class="header item"'], "&nbsp;") +
+    config.search_engine
+      .map((link, key) => {
+        if (key == 0) {
+          return element(
+            "a",
+            ['class="active item"', `data-url="${link.template}"`],
+            link.name
+          );
+        } else {
+          return item(link.template, link.name);
+        }
+      })
+      .join("")
+  );
+  var input = element(
+    "label",
+    ['class="ui left corner labeled right icon fluid large input"'],
+    element(
+      "div",
+      ['class="ui left corner label"'],
+      element(
+        "img",
+        [
+          'id="search-fav"',
+          'class="left floated avatar ui image"',
+          'src="https://start.duckduckgo.com/favicon.ico"',
+          'alt="logo"',
+        ],
+        ""
+      )
+    ) +
+    element(
+      "input",
+      [
+        'id="searchinput"',
+        'type="search"',
+        'placeholder="Search"',
+        'autocomplete="off"',
+      ],
+      ""
+    ) +
+    element("i", ['class="inverted circular search link icon"'], "")
+  );
+  return element(
+    "header",
+    [],
+    element(
+      "div",
+      [
+        'id="head"',
+        'class="ui inverted vertical masthead center aligned segment"',
+      ],
+      (config.hitokoto
+        ? element("div", ['id="nav"', 'class="ui container"'], nav)
+        : "") +
+      element(
+        "div",
+        ['id="title"', 'class="ui text container"'],
+        title +
+        (config.search ? input + menu : "") +
+        `${config.selling_ads
+          ? '<div><a id="menubtn" class="red ui icon inverted button"><i class="heart icon"></i> 喜欢此域名 </a></div>'
+          : ""
+        }`
+      )
+    )
+  );
 }
+/**
+ * 渲染第二个动态 div 的函数
+ * @returns {string} 以字符串返回的第二个Div
+ **/
 function renderDynamicDiv2(): string {
-  return element("", [""], "")
+  var main = config.quickLinkLists
+    .map((item) => {
+      const card = (url, name, desc) =>
+        element(
+          "a",
+          ['class="card"', `href=${url}`, 'target="_blank"', 'rel="noopener"'],
+          element(
+            "div",
+            ['class="content"'],
+            element(
+              "img",
+              [
+                'class="left floated avatar ui image" alt="logo"',
+                `src="${config.faviconGetter}${url}"`,
+              ],
+              ""
+            ) +
+            element("div", ['class="header"'], name) +
+            element("div", ['class="meta"'], desc)
+          )
+        );
+      const divider = element(
+        "h2",
+        ['class="ui horizontal divider header"'],
+        element("i", [`class="${item.icon} icon"`], "") + item.name
+      );
+
+      var content = element(
+        "div",
+        ['class="ui four stackable cards"'],
+        item.quickLinkList
+          .map((link) => {
+            return card(link.url, link.name, link.desc);
+          })
+          .join("")
+      );
+
+      return element("div", ['class="ui basic segment"'], divider + content);
+    })
+    .join("");
+  const sellerDiv = config.selling_ads ? renderSeller() : "";
+  return element("main", [], element("div", ['class="ui container"'], main)) + sellerDiv;
+}
+
+/**
+ * 渲染广告 div 的函数
+ * @returns {string} 以字符串返回的广告Div
+ **/
+function renderSeller(): string {
+  const item = (type, content) =>
+    element(
+      "div",
+      ['class="item"'],
+      element("i", [`class="${type} icon"`], "") +
+      element("div", ['class="content"'], content)
+    );
+  var title = element(
+    "h1",
+    ['class="ui yellow dividing header"'],
+    element("i", ['class="gem outline icon"'], "") +
+    element("div", ['class="content"'], config.sell_info.domain + " 正在出售")
+  );
+  var action = element(
+    "div",
+    ['class="actions"'],
+    element(
+      "div",
+      ['class="ui basic cancel inverted button"'],
+      element("i", ['class="reply icon"'], "") + "返回"
+    )
+  );
+
+  var contact = config.sell_info.contact
+    .map((list) => {
+      return item(list.type, list.content);
+    })
+    .join("");
+  var column = element(
+    "div",
+    ['class="column"'],
+    element(
+      "h3",
+      ['class="ui center aligned icon inverted header"'],
+      element(
+        "i",
+        ['class="circular envelope open outline grey inverted icon"'],
+        ""
+      ) + "联系我"
+    ) + element("div", ['class="ui relaxed celled large list"'], contact)
+  );
+  var price = element(
+    "div",
+    ['class="column"'],
+    element(
+      "div",
+      ['class="ui large yellow statistic"'],
+      element(
+        "div",
+        ['class="value"'],
+        element("i", [`class="${config.sell_info.mon_unit} icon"`], "") +
+        config.sell_info.price
+      )
+    )
+  );
+  var content = element(
+    "div",
+    ['class="content"'],
+    element(
+      "div",
+      ['class="ui basic segment"'],
+      element(
+        "div",
+        ['class="ui two column stackable center aligned grid"'],
+        element("div", ['class="ui inverted vertical divider"'], "感兴趣？") +
+        element("div", ['class="middle aligned row"'], price + column)
+      )
+    )
+  );
+
+  return element(
+    "div",
+    ['id="seller"', 'class="ui basic modal"'],
+    title + content + action
+  );
 }
 
 const localCSS = ``
