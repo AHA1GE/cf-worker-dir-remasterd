@@ -139,6 +139,7 @@ let config = {
 // 处理请求的函数
 export default {
   async fetch(request: Request, env: any) {
+    1
     try {
       if (!convertToBoolean(env.useLocal_CONFIG) && env.remoteURI) {
         config = await (await fetch(env.remoteURI + "config.json")).json();
@@ -222,9 +223,11 @@ function convertToBoolean(input: unknown): boolean | never {
 async function renderHTML(): Promise<string> {
   const staticHTML: string = generateStaticHTML();
   const dynamicHead: string = await generateDynamicHead();
+  const dynamicDiv1 = renderDynamicDiv1();
+  const dynamicDiv2 = renderDynamicDiv2();
   const dynamicJS: string = generateDynamicJS();
   const dynamicCSS: string = generateDynamicCSS();
-  let html = staticHTML.replace('<head src="/dynamicHeads.html"></head>', `${dynamicHead}`).replace('<script src="/dynamic.js"></script>', `${dynamicJS}`).replace('<style src="/dynamic.css"></style>', `${dynamicCSS}`);
+  let html = staticHTML.replace('<head src="/dynamicHeads.html"></head>', `${dynamicHead}`).replace('<header></header>', `${dynamicDiv1}`).replace('<main></main>', `${dynamicDiv2}`).replace('<script src="/dynamic.js"></script>', `${dynamicJS}`).replace('<style src="/dynamic.css"></style>', `${dynamicCSS}`);
   html = html
   return html;
 }
@@ -239,10 +242,9 @@ function generateStaticHTML(): string {
       <html lang="en">
         <head src="/dynamicHeads.html"></head>
         <body>
-          <header id="top-part-of-html"></header>
-          <main id="main-part-of-html"></main>
+          <header></header>
+          <main></main>
           <footer><div class="footer">Powered by<a class="ui label" href="https://github.com/AHA1GE/cf-worker-dir-remasterd" target="_blank" rel="noopener"><i class="github icon"></i>Cf-Worker-Dir-remastered</a> © Based on<a class="ui label"><i class="balance scale icon"></i>MIT License</a></div></footer>
-  
           <script src="/dynamic.js"></script>
           <style src="/dynamic.css></style>
         </body>
@@ -269,7 +271,12 @@ async function generateDynamicHead(): Promise<string> {
     const remoteCSSURI: string = `${config.remoteURI}index.css`;
     headList.push(headElement("link", [`href="${remoteCSSURI}"`, "rel=\"stylesheet\""]),);
   }
-  else { headList.push(headElement("link", ["href=\"https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css\"", "rel=\"stylesheet\""]),); }
+  else {
+    headList.push(headElement("link", ["href=\"https://cdn.jsdelivr.net/gh/chenkerun2000/cf-worker-dir@0.1.10.1/style.css\"", "rel=\"stylesheet\""]),);
+    headList.push(element("script", ["src=\"https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js\""], ""),);
+    headList.push(headElement("link", ["href=\"https://cdn.jsdelivr.net/npm/semantic-superhero-ui-css@1.0.10/semantic.min.css\"", "rel=\"stylesheet\""]),);
+    headList.push(element("script", ["src=\"https://cdn.jsdelivr.net/npm/semantic-superhero-ui-css@1.0.10/semantic.min.js\""], ""),);
+  }
   const head: string = headList.join("\n");
   if (config.useLocal_HEAD) { return head; }
   else {
@@ -296,45 +303,38 @@ async function generateDynamicHead(): Promise<string> {
  * @returns {string} 以字符串返回的 JavaScript
  */
 function generateDynamicJS(): string {
-  // 存储用于更新动态 div 的 JavaScript 的静态部分的常数
-  const staticJS = `window.addEventListener('load', () => {
-        const topPartOfHtml = document.getElementById('top-part-of-html');
-        const mainPartOfHtml = document.getElementById('main-part-of-html');
-  
-        topPartOfHtml.textContent = 'This is the first dynamic div.';
-        mainPartOfHtml.textContent = 'This is the second dynamic div.';
-      });
-      `
-  if (config.useLocal_JS) {//如果使用本地资源返回用于替换动态div的js
-    const dynamicDiv1 = renderDynamicDiv1();
-    const dynamicDiv2 = renderDynamicDiv2();
+
+  if (config.useLocal_JS) {//如果使用本地资源返回js
+    // 存储用于更新动态 div 的 JavaScript 的静态部分的常数
     const pageJS = `
-      <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
-      <script src="https://cdn.jsdelivr.net/npm/semantic-superhero-ui-css@1.0.10/semantic.min.js"></script>
       <script src="https://v1.hitokoto.cn/?encode=js&amp;select=%23hitokoto" defer=""></script>
       <script>
-          $('#sengine a').on('click', function (e) {
-              $('#sengine a.active').toggleClass('active');
-              $(e.target).toggleClass('active');
-              $('#search-fav').attr('src', $(e.target).data('url').match(/https{0,1}:\/\/\S+\//)[0] + '/favicon.ico');
-          });
-          $('.search').on('click', function (e) {
-              var url = $('#sengine a.active').data('url');
-              url = url.replace(/\$s/, $('#searchinput').val());
-              window.open(url);
-          });
-          /* 鼠标聚焦时，回车事件 */
-          $("#searchinput").bind("keypress", function () {
-              if (event.keyCode == 13) {
-                  // 触发需要调用的方法
-                  $(".search").click();
-              }
-          });
-          $('#menubtn').on('click', function (e) {
-              $('#seller').modal('show');
-          });
-      </script>`
-    return staticJS.replace(`'This is the first dynamic div.'`, dynamicDiv1).replace(`'This is the second dynamic div.'`, dynamicDiv2) + pageJS;
+        $("#sengine a").on("click", function (e) {
+          $("#sengine a.active").toggleClass("active");
+          $(e.target).toggleClass("active");
+          $("#search-fav").attr(
+            "src",
+            "${config.faviconGetter}"+$(e.target)
+              .data("url")
+              .match(`+ /https{0,1}:\/\/\S+\// + `)[0]
+          );
+        });
+        $(".search").on("click", function (e) {
+          var url = $("#sengine a.active").data("url");
+          url = url.replace(`+ /\$s/ + `, $("#searchinput").val());
+          window.open(url);
+        });
+        $("#searchinput").bind("keypress", function () {
+          if (event.keyCode == 13) {
+            $(".search").click();
+          }
+        });
+        $("#menubtn").on("click", function (e) {
+          $("#seller").modal("show");
+        });
+      </script>
+      `
+    return pageJS;
   }
   else {//如果使用远程资源返回远程js
     const remoteJS = `<script src="remote.js" defer=""></script>`
@@ -361,7 +361,7 @@ function generateDynamicCSS(): string {
  * @returns {string} 以字符串返回的第一个Div
  **/
 function renderDynamicDiv1(): string {
-  const item = (template, name) =>
+  const item = (template: string, name: string) =>
     element("a", ['class="item"', `data-url="${template}"`], name);
 
   var nav = element(
@@ -411,7 +411,7 @@ function renderDynamicDiv1(): string {
         [
           'id="search-fav"',
           'class="left floated avatar ui image"',
-          'src="https://start.duckduckgo.com/favicon.ico"',
+          `src="${config.faviconGetter + config.search_engine[0].template.match(/https{0,1}:\/\/\S+\//)[0]}"`,
           'alt="logo"',
         ],
         ""
@@ -454,6 +454,7 @@ function renderDynamicDiv1(): string {
     )
   );
 }
+
 /**
  * 渲染第二个动态 div 的函数
  * @returns {string} 以字符串返回的第二个Div
@@ -461,7 +462,7 @@ function renderDynamicDiv1(): string {
 function renderDynamicDiv2(): string {
   var main = config.quickLinkLists
     .map((item) => {
-      const card = (url, name, desc) =>
+      const card = (url: string, name: string, desc: string) =>
         element(
           "a",
           ['class="card"', `href=${url}`, 'target="_blank"', 'rel="noopener"'],
@@ -508,7 +509,7 @@ function renderDynamicDiv2(): string {
  * @returns {string} 以字符串返回的广告Div
  **/
 function renderSeller(): string {
-  const item = (type, content) =>
+  const item = (type: string, content: string) =>
     element(
       "div",
       ['class="item"'],
