@@ -135,8 +135,9 @@ let config = {
     },
   ],
 };
+
 // 处理请求的函数
-const handler: ExportedHandler = {
+export default {
   async fetch(request: Request, env: any) {
     try {
       if (!convertToBoolean(env.useLocal_CONFIG) && env.remoteURI) {
@@ -167,7 +168,7 @@ const handler: ExportedHandler = {
     return new Response(html_FINAL, { headers: { "content-type": "text/html;charset=UTF-8", }, });
   },
 };
-export default handler;
+
 
 /**
  * 用来创建element的工具函数
