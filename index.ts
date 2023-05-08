@@ -1,14 +1,11 @@
 // 处理请求的函数
 const handler: ExportedHandler = {
-  async fetch(request: Request) {
+  async fetch(request: Request, env: any) {
+    //从环境变量中获取favicon获取器
+    const getter = env.faviconGetter;
     // 构造 HTML 页面
-    const staticHTML = generateStaticHTML();
-    const dynamicJS = generateDynamicJS();
-    const dynamicCSS = generateDynamicCSS();
-    let html = staticHTML.replace('<script src="/dynamic.js"></script>', `<script>${dynamicJS}</script>`);
-    html = html.replace('<style src="/dynamic.css"></style>', `<style>${dynamicCSS}</style>`);
-
-    return new Response(html, {
+    const html_FINAL = renderHTML(getter);
+    return new Response(html_FINAL, {
       headers: {
         "content-type": "text/html;charset=UTF-8",
       },
@@ -17,7 +14,20 @@ const handler: ExportedHandler = {
 };
 
 export default handler;
-
+/**
+ * 生成 HTML 页面的函数
+ * @param getter  用于获取favicon的api链接
+ * @returns {string}  以字符串返回的页面
+ * @description 该函数会生成一个 HTML 页面。
+ **/
+function renderHTML(getter: string): string {
+  const staticHTML: string = generateStaticHTML();
+  const dynamicJS: string = generateDynamicJS();
+  const dynamicCSS: string = generateDynamicCSS();
+  let html = staticHTML.replace('<script src="/dynamic.js"></script>', `<script>${dynamicJS}</script>`);
+  html = html.replace('<style src="/dynamic.css"></style>', `<style>${dynamicCSS}</style>`);
+  return html;
+}
 // 生成 HTML 静态部分的函数
 function generateStaticHTML(): string {
   return `
@@ -40,8 +50,11 @@ function generateStaticHTML(): string {
       </html>
     `;
 }
-// 存储用于更新动态 div 的 JavaScript 的静态部分的常数
-const staticJS = `window.addEventListener('load', () => {
+
+// 生成用于更新动态 div 的 JavaScript 的函数
+function generateDynamicJS() {
+  // 存储用于更新动态 div 的 JavaScript 的静态部分的常数
+  const staticJS = `window.addEventListener('load', () => {
         const topPartOfHtml = document.getElementById('top-part-of-html');
         const mainPartOfHtml = document.getElementById('main-part-of-html');
   
@@ -49,8 +62,6 @@ const staticJS = `window.addEventListener('load', () => {
         mainPartOfHtml.textContent = 'This is the second dynamic div.';
       });
       `
-// 生成用于更新动态 div 的 JavaScript 的函数
-function generateDynamicJS() {
   const dynamicJS1 = ``;
   const dynamicJS2 = ``;
   return staticJS.replace(`'This is the first dynamic div.'`, dynamicJS1).replace(`'This is the second dynamic div.'`, dynamicJS2);
