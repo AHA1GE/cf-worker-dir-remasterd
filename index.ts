@@ -411,7 +411,8 @@ function renderDynamicDiv1(): string {
         [
           'id="search-fav"',
           'class="left floated avatar ui image"',
-          `src="${config.faviconGetter + config.search_engine[0].template.match(/https{0,1}:\/\/\S+\//)[0]}"`,
+          //`src="${config.faviconGetter + config.search_engine[0].template.match(/https{0,1}:\/\/\S+\//)[0]}"`,
+          `src="${config.faviconGetter + config.search_engine[0].template}"`,
           'alt="logo"',
         ],
         ""
