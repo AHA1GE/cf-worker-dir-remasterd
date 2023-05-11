@@ -1,0 +1,3 @@
+name = "cf-worker-dir-remasterd"
+compatibility_date = "2023-05-11"
+main = "src/index.ts"
