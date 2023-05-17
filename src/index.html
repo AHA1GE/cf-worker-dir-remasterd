@@ -31,7 +31,11 @@
                                 d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm7.5-6.923c-.67.204-1.335.82-1.887 1.855-.143.268-.276.56-.395.872.705.157 1.472.257 2.282.287V1.077zM4.249 3.539c.142-.384.304-.744.481-1.078a6.7 6.7 0 0 1 .597-.933A7.01 7.01 0 0 0 3.051 3.05c.362.184.763.349 1.198.49zM3.509 7.5c.036-1.07.188-2.087.436-3.008a9.124 9.124 0 0 1-1.565-.667A6.964 6.964 0 0 0 1.018 7.5h2.49zm1.4-2.741a12.344 12.344 0 0 0-.4 2.741H7.5V5.091c-.91-.03-1.783-.145-2.591-.332zM8.5 5.09V7.5h2.99a12.342 12.342 0 0 0-.399-2.741c-.808.187-1.681.301-2.591.332zM4.51 8.5c.035.987.176 1.914.399 2.741A13.612 13.612 0 0 1 7.5 10.91V8.5H4.51zm3.99 0v2.409c.91.03 1.783.145 2.591.332.223-.827.364-1.754.4-2.741H8.5zm-3.282 3.696c.12.312.252.604.395.872.552 1.035 1.218 1.65 1.887 1.855V11.91c-.81.03-1.577.13-2.282.287zm.11 2.276a6.696 6.696 0 0 1-.598-.933 8.853 8.853 0 0 1-.481-1.079 8.38 8.38 0 0 0-1.198.49 7.01 7.01 0 0 0 2.276 1.522zm-1.383-2.964A13.36 13.36 0 0 1 3.508 8.5h-2.49a6.963 6.963 0 0 0 1.362 3.675c.47-.258.995-.482 1.565-.667zm6.728 2.964a7.009 7.009 0 0 0 2.275-1.521 8.376 8.376 0 0 0-1.197-.49 8.853 8.853 0 0 1-.481 1.078 6.688 6.688 0 0 1-.597.933zM8.5 11.909v3.014c.67-.204 1.335-.82 1.887-1.855.143-.268.276-.56.395-.872A12.63 12.63 0 0 0 8.5 11.91zm3.555-.401c.57.185 1.095.409 1.565.667A6.963 6.963 0 0 0 14.982 8.5h-2.49a13.36 13.36 0 0 1-.437 3.008zM14.982 7.5a6.963 6.963 0 0 0-1.362-3.675c-.47.258-.995.482-1.565.667.248.92.4 1.938.437 3.008h2.49zM11.27 2.461c.177.334.339.694.482 1.078a8.368 8.368 0 0 0 1.196-.49 7.01 7.01 0 0 0-2.275-1.52c.218.283.418.597.597.932zm-.488 1.343a7.765 7.765 0 0 0-.395-.872C9.835 1.897 9.17 1.282 8.5 1.077V4.09c.81-.03 1.577-.13 2.282-.287z" />
                         </svg>
                     </i>
-                    <div class="title">AHAI Nav<div class="sub-title">—— AHAI's Index</div>
+                    <div class="title">
+                        AHAI Nav
+                        <div class="sub-title">
+                            —— AHAI's Index
+                        </div>
                     </div>
                 </h1>
                 <label class="search-engine-container">
@@ -372,28 +376,7 @@
     }
 
     header.header>div.head-container>div.title-container>h1.title-div>i.glob-icon {
-        /* TODO: review and fine tune required */
-        -webkit-text-size-adjust: 100%;
-        line-height: 1.28571429em;
-        text-transform: none;
-        color: #fff;
-        box-sizing: inherit;
-        margin: 0 .25rem 0 0;
-        width: 1.18em;
-        height: 1em;
-        font-family: Icons;
-        font-style: normal;
-        font-weight: 400;
-        text-decoration: inherit;
-        text-align: center;
-        speak: none;
-        -webkit-font-smoothing: antialiased;
-        backface-visibility: hidden;
-        display: table-cell;
-        opacity: 1;
-        font-size: 1.5em;
-        padding-top: 0;
-        vertical-align: middle;
+        /* todo */
     }
 
     header.header>div.head-container>div.title-container>h1.title-div>div.title {
@@ -461,6 +444,17 @@
     }
 
     div.scrollable>main.main>div.quicklink-div>div.quicklink>h2.horizontal-divider {
+        font-size: 1.8rem;
+        font-weight: normal;
+        color: rgb(250, 250, 250);
+        margin-top: 2rem;
+        margin-left: 0rem;
+        margin-right: 0rem;
+        margin-bottom: 0rem;
+        padding-top: 0rem;
+        padding-left: 0rem;
+        padding-right: 0rem;
+        padding-bottom: 0rem;
         position: relative;
         display: flex;
         align-items: center;
@@ -471,8 +465,19 @@
         content: "";
         flex-grow: 1;
         height: 2px;
-        margin: 0 1rem;
-        background-color: rgba(128, 128, 128, 0.6);
+        margin: 0rem 1rem;
+        background-color: rgba(200, 200, 200, 0.9);
+    }
+
+    div.scrollable>main.main>div.quicklink-div>div.quicklink>h2.horizontal-divider>i.quicklink-icon {
+        margin-top: 0rem;
+        margin-left: 0rem;
+        margin-right: 1rem;
+        margin-bottom: 0rem;
+        padding-top: 0rem;
+        padding-left: 0rem;
+        padding-right: 0rem;
+        padding-bottom: 0rem;
     }
 
     div.scrollable>main.main>div.quicklink-div>div.quicklink>div.four-stackable-cards {
@@ -481,46 +486,87 @@
         justify-content: space-around;
     }
 
-    div.scrollable>main.main>div.quicklink-div>div.quicklink>div.four-stackable-cards>a.card {
-        flex-basis: calc(20%);
-        min-height: 5rem;
-        height: 6rem;
-        margin-top: 0.5rem;
-        margin-left: 0.1rem;
-        margin-right: 0.1rem;
-        margin-bottom: 0.5rem;
-        padding-top: 1rem;
-        padding-bottom: 1rem;
-        padding-left: 1rem;
-        padding-right: 1rem;
-        text-align: center;
-        border-radius: 1.2rem;
-        background-image: linear-gradient(rgba(100, 100, 100, 0.9), rgba(25, 25, 25, 0.5));
-        color: white;
-        text-decoration: none;
-    }
-
     div.scrollable>main.main>div.quicklink-div>div.quicklink>div.four-stackable-cards>a.card:visited {
         color: white;
         text-decoration: none;
     }
 
+    div.scrollable>main.main>div.quicklink-div>div.quicklink>div.four-stackable-cards>a.card {
+        color: white;
+        text-decoration: none;
+        flex-basis: calc(20%);
+        margin-top: .6rem;
+        margin-bottom: .6rem;
+        margin-left: .6rem;
+        margin-right: .6rem;
+        padding: 0rem;
+        /* copied css */
+        /* -webkit-text-size-adjust: 100%; */
+        /* -webkit-box-orient: vertical; */
+        /* -webkit-box-direction: normal; */
+        /* line-height: 1.4285em; */
+        /* box-sizing: inherit; */
+        /* max-width: 100%; */
+        /* position: relative; */
+        /* flex-direction: column; */
+        /* min-height: 0; */
+        background: rgba(65, 65, 65, 0.6);
+        border: none;
+        border-radius: .5rem;
+        /* box-shadow: 0 1px 3px 0 #353535, 0 0 0 1px #636363; */
+        /* transition: box-shadow .1s ease, transform .1s ease, -webkit-transform .1s ease; */
+        /* display: flex; */
+        /* float: none; */
+        /* transform: none; */
+        /* width: calc(25% - 1.5em); */
+
+    }
+
+    div.scrollable>main.main>div.quicklink-div>div.quicklink>div.four-stackable-cards>a.card>div.content {
+        margin: 0rem;
+        padding: 1rem;
+        /* -webkit-text-size-adjust: 100%; */
+        /* -webkit-box-direction: normal; */
+        /* -webkit-box-flex: 1; */
+        /* line-height: 1.4285em; */
+        /* box-sizing: inherit; */
+        /* border-top: none; */
+        /* border-radius: .28571429rem; */
+        /* flex-grow: 1; */
+        /* border: none; */
+        /* background: 0 0; */
+        /* box-shadow: none; */
+    }
+
     div.scrollable>main.main>div.quicklink-div>div.quicklink>div.four-stackable-cards>a.card>div.content>img.card-favicon-top-left-float {
         width: 3rem;
         height: 3rem;
+        margin-right: 1em;
+        margin-bottom: 1em;
         /* -webkit-mask-image: circle(50%); */
         clip-path: circle(50%);
-        border-radius: 50%;
-        border-color: #e7e7e7e0;
-        border-width: 2px;
+        /* border-radius: 50%; */
+        /* border-color: #00000000; */
+        /* border-width: 2px; */
+        /* -webkit-box-direction: normal; */
+        /* box-sizing: inherit; */
+        /* border-style: none; */
+        position: relative;
+        /* max-width: 100%; */
+        /* background-color: transparent; */
+        float: left;
+        /* display: inline-block; */
+        vertical-align: middle;
     }
 
     div.scrollable>main.main>div.quicklink-div>div.quicklink>div.four-stackable-cards>a.card>div.content>div.header {
-        font-size: 1.1rem;
+        font-size: 1rem;
+        color: rgba(240, 255, 255, 1);
     }
 
     div.scrollable>main.main>div.quicklink-div>div.quicklink>div.four-stackable-cards>a.card>div.content>div.meta {
-        font-size: 0.8rem;
+        font-size: 0.9rem;
+        color: rgba(240, 255, 255, 0.6);
     }
 
     .footer {
@@ -573,8 +619,8 @@
 <style>
     /* 手机端样式表 mobile css */
     @media screen and (max-width: 767px) {
-
         /* 手机竖屏 mobile potriat */
+
         div.scrollable>main.main>div.quicklink-div>div.quicklink>div.four-stackable-cards {
             flex-direction: column;
             padding-left: 5%;
@@ -582,12 +628,34 @@
         }
 
         .card {
-            flex-basis: calc(100% - 2rem);
+            flex-basis: calc(100% - 3rem);
         }
+
+        .card>.content {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+
+        }
+
+        .card>.content>.header {
+            flex-basis: 25%;
+            /* flex-grow: 1; */
+            margin: .5rem;
+        }
+
+        .card>.content>.meta {
+            flex-basis: 50%;
+            /* flex-grow: 1; */
+            margin: .5rem;
+        }
+
     }
 
     @media screen and (max-height: 480px) {
         /* 手机横屏 mobile landscape */
+
     }
 </style>
 
