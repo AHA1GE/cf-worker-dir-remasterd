@@ -23,7 +23,7 @@
         </div>
         <div id="head" class="head-container">
             <div id="title" class="title-container">
-                <h1 class="title-div">
+                <h1 class="title-div prevent-select">
                     <i class="globe-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" class="svg-icon" fill="currentColor"
                             class="bi bi-globe2" viewBox="0 0 16 16">
@@ -373,13 +373,15 @@
     header.header>div.head-container>div.title-container>h1.title-div {
         margin: 0px;
         padding: 0px;
+        display: inline-table;
     }
 
     header.header>div.head-container>div.title-container>h1.title-div>i.glob-icon {
-        /* todo */
+        display: table-cell;
     }
 
     header.header>div.head-container>div.title-container>h1.title-div>div.title {
+        display: table-cell;
         font-size: 2rem;
         font-weight: bold;
         margin-top: 0rem;
