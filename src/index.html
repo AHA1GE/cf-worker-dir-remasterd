@@ -59,7 +59,6 @@
                     <a class="item" data-url="https://www.baidu.com/s?wd=$s">Baidu</a>
                     <a class="item" data-url="https://www.bing.com/search?q=$s">Bing</a>
                 </div>
-                <!-- <div><a id="menubtn" class="like-this-domain-button"><i class="heart-icon"></i> 喜欢此域名 </a></div> -->
             </div>
         </div>
     </header>
@@ -204,37 +203,6 @@
                 </div>
             </div>
         </main>
-        <!-- <div id="seller" class="ui basic modal">
-            <h1 class="ui yellow dividing header"><i class="gem outline icon"></i>
-                <div class="content">ahaigege.com 正在出售</div>
-            </h1>
-            <div class="content">
-                <div class="ui basic segment">
-                    <div class="ui two column stackable center aligned grid">
-                        <div class="ui inverted vertical divider">感兴趣？</div>
-                        <div class="middle aligned row">
-                            <div class="column">
-                                <div class="ui large yellow statistic">
-                                    <div class="value"><i class="yen sign icon"></i>99.99</div>
-                                </div>
-                            </div>
-                            <div class="column">
-                                <h3 class="ui center aligned icon inverted header"><i
-                                        class="circular envelope open outline grey inverted icon"></i>联系我</h3>
-                                <div class="ui relaxed celled large list">
-                                    <div class="item"><i class="envelope icon"></i>
-                                        <div class="content">ahaiG0d@gmail.com</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="actions">
-                <div class="ui basic cancel inverted button"><i class="reply icon"></i>返回</div>
-            </div>
-        </div> -->
 
     </div>
     <footer class="footer">
@@ -265,65 +233,43 @@
         </div>
     </footer>
 
-    <script src="https://v1.hitokoto.cn/?encode=js&amp;select=%23hitokoto" defer="">//hitokoto js</script>
-    <script>//rewrited standalone search engine switcher js
-        // Select all links within an element with ID "sengine"
+    <script src="https://v1.hitokoto.cn/?encode=js&amp;select=%23hitokoto" defer=""></script>
+    <script>
         var sengineLinks = document.querySelectorAll("#sengine a");
-
-        // Attach click event listener to each link
         sengineLinks.forEach(function (link) {
             link.addEventListener("click", function (event) {
-                // Toggle "active" class off any currently active link
                 var activeLink = document.querySelector("#sengine a.active");
                 if (activeLink) {
                     activeLink.classList.remove("active");
                 }
-
-                // Toggle "active" class on clicked link
                 link.classList.add("active");
-
-                // Update favicon image URL
                 var searchFav = document.querySelector("#search-fav");
                 var url = link.getAttribute("data-url").match(/https?:\/\/\S+\//)[0];
                 searchFav.setAttribute("src", "https://favicon.ahaigege.com/?url=" + url);
             });
         });
 
-        // Attach click event listener to elements with id "search"
         var searchBtn = document.querySelector("#search");
         searchBtn.addEventListener("click", function (event) {
-            // Get the currently active link's URL
             var activeLink = document.querySelector("#sengine a.active");
             var url = activeLink.getAttribute("data-url");
-
-            // Replace "$s" in the URL with the search input value and open new window/tab
             var searchInput = document.querySelector("#searchinput");
             url = url.replace(/\$s/, searchInput.value);
             window.open(url);
         });
-
-        // Attach keypress event listener to input element with ID "searchinput"
         var searchInput = document.querySelector("#searchinput");
         searchInput.addEventListener("keypress", function (event) {
             if (event.keyCode === 13) {
-                // Trigger click event on search button when Enter key is pressed
                 searchBtn.click();
             }
         });
-
-        // Attach click event listener to element with ID "menubtn"
         var menuBtn = document.querySelector("#menubtn");
         menuBtn.addEventListener("click", function (event) {
-            // Display modal with ID "seller"
             var sellerModal = document.querySelector("#seller");
             sellerModal.style.display = "block";
         });
 
     </script>
-    <script>
-        //
-    </script>
-
 </body>
 
 <style>
@@ -354,10 +300,6 @@
     }
 
     header.header {
-        /* position: fixed; */
-        /* top: 0; */
-        /* left: 0; */
-        /* height: 20%; */
         width: 100%;
         text-align: center;
         margin-top: 0rem;
@@ -701,18 +643,6 @@
         backdrop-filter: blur(10rem);
     }
 
-    /* div.scrollable>main.main>div.quicklink-div>div.quicklink>div.four-stackable-cards>a.card:hover::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 50%;
-        height: 100%;
-        background: linear-gradient(to left, rgba(255, 255, 255, 0.15), transparent);
-        transform: skewX(45deg) translateX(0);
-        transition: all 0.2s ease-in-out !important;
-    } */
-
     div.scrollable>main.main>div.quicklink-div>div.quicklink>div.four-stackable-cards>a.card>div.content {
         margin: 0rem;
         padding: 1rem;
@@ -750,7 +680,6 @@
         height: 3rem;
         width: 100%;
         margin: 0rem;
-        /* padding-top: 1.5rem; */
         padding-bottom: 0.5rem;
         text-align: center;
         font-size: 0, 95rem;
@@ -835,13 +764,11 @@
 
         .card>.content>.header {
             flex-basis: 25%;
-            /* flex-grow: 1; */
             margin: .5rem;
         }
 
         .card>.content>.meta {
             flex-basis: 50%;
-            /* flex-grow: 1; */
             margin: .5rem;
         }
 
@@ -886,13 +813,11 @@
 
         .card>.content>.header {
             flex-basis: 25%;
-            /* flex-grow: 1; */
             margin: .5rem;
         }
 
         .card>.content>.meta {
             flex-basis: 50%;
-            /* flex-grow: 1; */
             margin: .5rem;
         }
 
