@@ -39,24 +39,27 @@
                     </div>
                 </h1>
                 <label class="search-engine-container">
-                    <div class="search-engine-top-left-icon-container">
+                    <div class="search-engine-top-left-icon-container prevent-select">
                         <img id="search-fav" class="search-engine-favicon-top-left-float"
                             src="https://favicon.ahaigege.com/?url=https://duckduckgo.com" alt="logo">
                     </div>
                     <input id="searchinput" type="search" placeholder="Search" autocomplete="off">
-                    <i class="search-engine-button"></i>
+                    <i class="search-engine-button">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-search"
+                            viewBox="0 0 16 16">
+                            <path
+                                d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                        </svg>
+                    </i>
                 </label>
                 <div id="sengine" class="search-engine-switch-menu">
-                    <div class="header item">
-                        &nbsp;
-                    </div>
                     <a class="active item"
                         data-url="https://start.duckduckgo.com/?q=$s&amp;kak=-1&amp;kal=-1&amp;kao=-1&amp;kaq=-1&amp;kp=-2&amp;kaj=m&amp;k1=-1&amp;kav=1&amp;kn=1&amp;kam=google-maps&amp;kax=-1&amp;kap=-1&amp;k5=2">Duck</a><a
                         class="item" data-url="https://www.google.com/search?q=$s">Google</a>
                     <a class="item" data-url="https://www.baidu.com/s?wd=$s">Baidu</a>
                     <a class="item" data-url="https://www.bing.com/search?q=$s">Bing</a>
                 </div>
-                <div><a id="menubtn" class="like-this-domain-button"><i class="heart-icon"></i> 喜欢此域名 </a></div>
+                <!-- <div><a id="menubtn" class="like-this-domain-button"><i class="heart-icon"></i> 喜欢此域名 </a></div> -->
             </div>
         </div>
     </header>
@@ -434,7 +437,7 @@
         position: relative;
         float: left;
         top: 0;
-        left: 1.5rem;
+        left: 1.6rem;
         vertical-align: middle;
         z-index: 2;
     }
@@ -452,34 +455,52 @@
         float: left;
         top: 0rem;
         left: -2rem;
+        width: 100% !important;
+        max-width: 40rem !important;
         vertical-align: middle;
         overflow: visible;
         z-index: 1;
         text-align: left;
         font-size: 1.3rem;
         padding-left: 4rem;
-        padding-top: 1rem;
-        padding-bottom: 1rem;
-        padding-right: 3rem;
+        padding-top: 1.5rem;
+        padding-bottom: 1.5rem;
+        padding-right: 4rem;
         margin-top: 0rem;
         margin-left: 0rem;
         margin-right: 0rem;
         margin-bottom: 0rem;
-
-
         line-height: 1.3rem;
-        border-radius: .5rem;
-        background: #fff;
-        border: 1px solid rgba(34, 36, 38, .15);
-        /* color: rgba(0, 0, 0, .87); */
-        /* outline-offset: -2px; */
-        /* outline: 0; */
+        border-top: solid 0rem rgba(0, 0, 0, 0);
+        border-left: solid 0rem rgba(0, 0, 0, 0);
+        border-right: solid 0rem rgba(0, 0, 0, 0);
+        border-bottom: solid 0rem rgba(0, 0, 0, 0);
+        border-radius: 0.8rem;
+        background: rgba(255, 255, 255, 0.9);
+        color: rgb(0, 0, 0);
+        outline: solid 0rem rgba(0, 0, 0, 0);
+        box-shadow: inset 0.1rem 0.1rem 1rem 0rem rgba(0, 0, 0, 0.5),
+            -0.1rem -0.1rem 2rem 0rem rgba(255, 255, 255, 0.1)
+    }
 
-        /* box-shadow: none; */
-        /* padding-right: 2.7em !important; */
-        width: 100% !important;
-        max-width: 40rem;
-        /* padding-left: 3.25em !important; */
+    header.header>div.head-container>div.title-container>label.search-engine-container>i.search-engine-button {
+        position: relative;
+        float: right;
+        top: 0;
+        right: 5.5rem;
+        vertical-align: middle;
+        z-index: 2;
+        color: black;
+        width: 2rem;
+        height: 2rem;
+        margin: 0.1rem;
+        padding: 0.1rem;
+    }
+
+    header.header>div.head-container>div.title-container>label.search-engine-container>i.search-engine-button:hover {
+        cursor: pointer;
+        color: rgb(124, 124, 124);
+        transition: all 0.1s !important;
     }
 
     header.header>div.head-container>div.title-container>div.search-engine-switch-menu {
@@ -496,54 +517,52 @@
         margin-bottom: 0rem;
     }
 
-    header.header>div.head-container>div.title-container>div.search-engine-switch-menu>a.active {
-        text-align: center;
-        position: relative;
-        vertical-align: middle;
-        line-height: 1;
-        text-decoration: none;
-        flex: 0 0 auto;
-        user-select: none;
-        text-transform: none;
-        display: flex;
-        -webkit-box-align: center;
-        align-items: center;
-        align-self: center;
-        border: none;
-        padding: .78571429em .92857143em;
-        transition: color .1s ease;
-        font-weight: 700;
-        border-left: 1px solid transparent;
-        border-right: 1px solid transparent;
-        border-bottom: 1px solid transparent;
-        border-top: none;
-        box-shadow: none;
-        border-color: #d4d4d5;
-        margin: -1px 0 0 0;
+    header.header>div.head-container>div.title-container>div.search-engine-switch-menu>a.item:hover {
+        cursor: pointer;
+        letter-spacing: 0.3rem;
+        transition: all 0.1s ease-in-out !important;
     }
 
     header.header>div.head-container>div.title-container>div.search-engine-switch-menu>a.item {
-
-        text-align: center;
-        position: relative;
-        vertical-align: middle;
         flex: 0 0 auto;
         user-select: none;
-        display: flex;
-        align-items: center;
-        align-self: center;
         padding-left: 1.5rem;
-        padding-top: .8rem;
+        padding-top: .6rem;
         padding-bottom: 1rem;
         padding-right: 1.5rem;
         margin-top: 0rem;
-        margin-left: 0rem;
-        margin-right: 0rem;
+        margin-left: -0px;
+        margin-right: -0px;
         margin-bottom: 1.5rem;
-        transition: color .1s ease;
-        border-radius: .28571429rem;
-        background: 0 0;
+        border-top-left-radius: 0rem;
+        border-top-right-radius: 0rem;
+        border-bottom-right-radius: 0.8rem;
+        border-bottom-left-radius: 0.8rem;
+        border-left: 0px solid transparent;
+        border-right: 0px solid transparent;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        border-top: none;
+        background-color: rgba(255, 255, 255, 0.05);
+        box-shadow: 0rem 1rem 2rem 0rem rgba(0, 0, 0, 0.2);
+        letter-spacing: 0.1rem;
+        backdrop-filter: blur(1rem);
+    }
 
+    header.header>div.head-container>div.title-container>div.search-engine-switch-menu>a.item::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 50%;
+        height: 100%;
+        background: linear-gradient(to left, rgba(255, 255, 255, 0.15), transparent);
+        transform: skewX(45deg) translateX(0);
+
+    }
+
+    header.header>div.head-container>div.title-container>div.search-engine-switch-menu>a.active {
+        background-color: rgba(255, 255, 255, 0.3);
+        letter-spacing: 0.3rem;
     }
 
     div.scrollable {
@@ -592,10 +611,10 @@
         font-size: 1.8rem;
         font-weight: normal;
         color: rgb(250, 250, 250);
-        margin-top: 2rem;
+        margin-top: 2.5rem;
         margin-left: 0rem;
         margin-right: 0rem;
-        margin-bottom: 0rem;
+        margin-bottom: 0.8rem;
         padding-top: 0rem;
         padding-left: 0rem;
         padding-right: 0rem;
@@ -640,22 +659,39 @@
         color: white;
         text-decoration: none;
         flex-basis: calc(20%);
-        margin-top: .6rem;
-        margin-bottom: .6rem;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
         margin-left: .6rem;
         margin-right: .6rem;
         padding: 0rem;
-        background: rgba(65, 65, 65, 0.6);
         border: none;
-        border-radius: .5rem;
-        /* box-shadow: 0 1px 3px 0 #353535, 0 0 0 1px #636363; */
-        /* transition: box-shadow .1s ease, transform .1s ease, -webkit-transform .1s ease; */
-        /* display: flex; */
-        /* float: none; */
-        /* transform: none; */
-        /* width: calc(25% - 1.5em); */
-
+        border-radius: 1rem;
+        background: rgba(0, 0, 0, 0.01);
+        box-shadow: 1rem 1rem 2rem 0rem rgba(255, 255, 255, 0.2),
+            -1rem -1rem 2rem 0rem rgba(0, 0, 0, 0.2);
+        backdrop-filter: blur(2rem);
     }
+
+    div.scrollable>main.main>div.quicklink-div>div.quicklink>div.four-stackable-cards>a.card:hover {
+        box-shadow: 1rem 1rem 2rem 0rem rgba(255, 255, 255, 0.2),
+            -1rem -1rem 2rem 0rem rgba(0, 0, 0, 0.2),
+            inset 1rem 1rem 1rem 0rem rgba(255, 255, 255, 0.05),
+            inset -1rem -1rem 1rem 0rem rgba(200, 200, 200, 0.05);
+        transition: all 0.2s ease-out !important;
+        backdrop-filter: blur(10rem);
+    }
+
+    /* div.scrollable>main.main>div.quicklink-div>div.quicklink>div.four-stackable-cards>a.card:hover::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 50%;
+        height: 100%;
+        background: linear-gradient(to left, rgba(255, 255, 255, 0.15), transparent);
+        transform: skewX(45deg) translateX(0);
+        transition: all 0.2s ease-in-out !important;
+    } */
 
     div.scrollable>main.main>div.quicklink-div>div.quicklink>div.four-stackable-cards>a.card>div.content {
         margin: 0rem;
@@ -731,6 +767,7 @@
 
     * {
         box-sizing: border-box;
+        transition: all 0.1s ease-in-out;
     }
 </style>
 
