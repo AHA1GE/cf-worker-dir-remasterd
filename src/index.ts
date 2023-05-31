@@ -225,9 +225,16 @@ async function renderHTML(): Promise<string> {
   const dynamicHead: string = await generateDynamicHead();
   const dynamicDiv1 = renderDynamicDiv1();
   const dynamicDiv2 = renderDynamicDiv2();
+  const dynamicDiv3 = renderDynamicDiv3();
   const dynamicJS: string = generateDynamicJS();
   const dynamicCSS: string = generateDynamicCSS();
-  let html = staticHTML.replace('<head src="/dynamicHeads.html"></head>', `${dynamicHead}`).replace('<header></header>', `${dynamicDiv1}`).replace('<main></main>', `${dynamicDiv2}`).replace('<script src="/dynamic.js"></script>', `${dynamicJS}`).replace('<style src="/dynamic.css"></style>', `${dynamicCSS}`);
+  let html = staticHTML
+    .replace('<head src="/dynamicHeads.html"></head>', `${dynamicHead}`)
+    .replace('<header></header>', `${dynamicDiv1}`)
+    .replace('<main></main>', `${dynamicDiv2}`)
+    .replace('<footer></footer>', `${dynamicDiv3}`)
+    .replace('<script src="/dynamic.js"></script>', `${dynamicJS}`)
+    .replace('<style src="/dynamic.css"></style>', `${dynamicCSS}`);
   html = html
   return html;
 }
@@ -244,7 +251,7 @@ function generateStaticHTML(): string {
         <body>
           <header></header>
           <main></main>
-          <footer><div class="footer">Powered by<a class="ui label" href="https://github.com/AHA1GE/cf-worker-dir-remasterd" target="_blank" rel="noopener"><i class="github icon"></i>Cf-Worker-Dir-remastered</a> © Based on<a class="ui label"><i class="balance scale icon"></i>MIT License</a></div></footer>
+          <footer></footer>
           <script src="/dynamic.js"></script>
           <style src="/dynamic.css></style>
         </body>
@@ -504,7 +511,9 @@ function renderDynamicDiv2(): string {
   const sellerDiv = config.selling_ads ? renderSeller() : "";
   return element("main", [], element("div", ['class="ui container"'], main)) + sellerDiv;
 }
-
+function renderDynamicDiv3(): string {
+  return element("footer", ['class="footer"'], element("div", ['class="footer-div"'], "Powered by" + element("a", ['href=""'], "CWDD-re") + "&nbsp&nbsp © Based on" + element("a", [], "MIT License")));
+}
 /**
  * 渲染广告 div 的函数
  * @returns {string} 以字符串返回的广告Div
@@ -587,4 +596,5 @@ function renderSeller(): string {
   );
 }
 
-const localCSS = ``
+const localCSS = `
+`
