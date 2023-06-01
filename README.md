@@ -1,2 +1,5 @@
 # cf-worker-dir-remasterd
- A index based on Cloudflare worker.
+
+aka CWD-re
+A index generator based on Cloudflare worker.
+https://ahaigege.com/
