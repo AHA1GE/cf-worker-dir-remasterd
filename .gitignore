@@ -108,3 +108,10 @@ coverage
 
 # Yarn Integrity file
 .yarn-integrity
+
+#cloud flare
+wrangler.toml
+tsconfig.json
+package-lock.json
+package.json
+```
