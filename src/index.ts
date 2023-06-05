@@ -149,7 +149,7 @@ let config = {
           url: "https://www.researchgate.net/",
           name: "Research Gate",
           desc: "Publish search",
-          icon_size: '32',
+          icon_size: '64',
         },
       ],
     },
@@ -365,11 +365,11 @@ function generateDynamicJS(): string {
                 searchBtn.click();
             }
         });
-        var menuBtn = document.querySelector("#menubtn");
-        menuBtn.addEventListener("click", function (event) {
-            var sellerModal = document.querySelector("#seller");
-            sellerModal.style.display = "block";
-        });
+        //var menuBtn = document.querySelector("#menubtn");
+        //menuBtn.addEventListener("click", function (event) {
+        //    var sellerModal = document.querySelector("#seller");
+        //    sellerModal.style.display = "block";
+        //});
 
     </script>
       `
