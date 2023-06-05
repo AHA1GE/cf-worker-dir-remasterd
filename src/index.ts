@@ -18,6 +18,10 @@ let config = {
   search_engine: [
     //choose search engine which you use
     {
+      name: "Bing",
+      template: "https://www.bing.com/search?q=$s",
+    },
+    {
       name: "Duck",
       template:
         "https://start.duckduckgo.com/?q=$s&kak=-1&kal=-1&kao=-1&kaq=-1&kp=-2&kaj=m&k1=-1&kav=1&kn=1&kam=google-maps&kax=-1&kap=-1&k5=2",
@@ -29,10 +33,6 @@ let config = {
     {
       name: "Baidu",
       template: "https://www.baidu.com/s?wd=$s",
-    },
-    {
-      name: "Bing",
-      template: "https://www.bing.com/search?q=$s",
     },
   ],
   selling_ads: true, //Selling your domain or not.(turning on may be helpful for selling this domain by showing some ads.)
@@ -61,21 +61,25 @@ let config = {
           url: "https://qnap.ahaigege.com",
           name: "NAS proxied",
           desc: "NAS proxied by CF",
+          icon_size: '32',
         },
         {
           url: "https://nas.ahaigege.com",
           name: "NAS",
           desc: "Redir to NAS",
+          icon_size: '32',
         },
         {
           url: "https://gpt.ahaigege.com",
           name: "GPT",
           desc: "online GPT demo",
+          icon_size: '32',
         },
         {
           url: "https://dweet.io/follow/zeropi",
           name: "0Pi",
           desc: "zero pi sbc info.",
+          icon_size: '16',
         },
         // {
         //   url: "https://ysun.site",
@@ -94,21 +98,25 @@ let config = {
           url: "https://github.com/",
           name: "Github",
           desc: "The world's largest code manage platform",
+          icon_size: '32',
         },
         {
           url: "https://www.w3schools.com/",
           name: "W3schools",
           desc: "Front-end basic tutorial",
+          icon_size: '32',
         },
         {
           url: "https://www.csdn.net",
           name: "CSDN",
           desc: "Chinese technology blog",
+          icon_size: '32',
         },
         {
           url: "https://www.runoob.com/",
           name: "RUNOOB",
           desc: "Basic programing tutorial",
+          icon_size: '32',
         },
       ],
     },
@@ -123,21 +131,25 @@ let config = {
           url: "https://scholar.google.com/",
           name: "Google Scholar",
           desc: "Academic search",
+          icon_size: '32',
         },
         {
           url: "https://www.cnki.net/",
           name: "知网",
           desc: "Knowledge Infrastructure",
+          icon_size: '16',
         },
         {
           url: "https://v2ex.com/",
           name: "V2EX",
           desc: "Chat room",
+          icon_size: '32',
         },
         {
           url: "https://www.researchgate.net/",
           name: "Research Gate",
           desc: "Publish search",
+          icon_size: '32',
         },
       ],
     },
@@ -334,7 +346,7 @@ function generateDynamicJS(): string {
                 }
                 link.classList.add("active");
                 var searchFav = document.querySelector("#search-fav");
-                var url = link.getAttribute("data-url").match(` + /https?:\/\/\S+\// + `)[0];
+                var url = 'https://' + link.getAttribute("data-url").match(` + /^https?:\/\/(?:[^.]+\.)?([^.]+\.[a-z]{2,})/i + `)[1] || '';
                 searchFav.setAttribute("src", "${config.faviconGetter}" + url);
             });
         });
@@ -436,7 +448,7 @@ function renderDynamicDiv1(): string {
         [
           'id="search-fav"',
           'class="search-engine-favicon-top-left-float"',
-          `src="${config.faviconGetter + config.search_engine[0].template}"`,
+          `src="${config.faviconGetter}https://${config.search_engine[0].template.match(/^https?:\/\/(?:[^.]+\.)?([^.]+\.[a-z]{2,})/i)?.[1] || ''}"`,
           'alt="logo"',
         ],
         ""
@@ -517,7 +529,7 @@ function renderDynamicDiv1(): string {
 function renderDynamicDiv2(): string {
   var main = config.quickLinkLists
     .map((item) => {
-      const card = (url: string, name: string, desc: string) =>
+      const card = (url: string, name: string, desc: string, icon_size: string) =>
         element(
           "a",
           ['class="card"', `href=${url}`, 'target="_blank"', 'rel="noopener"'],
@@ -528,7 +540,7 @@ function renderDynamicDiv2(): string {
               "img",
               [
                 'class="card-favicon-top-left-float" alt="logo"',
-                `src="${config.faviconGetter}${url}"`,
+                `src="${config.faviconGetter}https://${url.match(/^https?:\/\/([a-z0-9.-]+\.[a-z]{2,})/i)?.[1] || ''}&sz=${icon_size}"`,
               ],
               ""
             ) +
@@ -547,7 +559,7 @@ function renderDynamicDiv2(): string {
         ['class="four-stackable-cards"'],
         item.quickLinkList
           .map((link) => {
-            return card(link.url, link.name, link.desc);
+            return card(link.url, link.name, link.desc, link.icon_size);
           })
           .join("")
       );
