@@ -58,13 +58,13 @@ let config = {
             </svg>`,
       quickLinkList: [
         {
-          url: "https://qnap.ahaigege.com",
-          name: "NAS proxied",
-          desc: "NAS proxied by CF",
+          url: "https://file.aha1.top",
+          name: "Seafile",
+          desc: "Seafile Server",
           icon_size: '32',
         },
         {
-          url: "https://nas.ahaigege.com",
+          url: "https://nas.ahaigege.com:8443",
           name: "NAS",
           desc: "Redir to NAS",
           icon_size: '32',
