@@ -70,9 +70,9 @@ export const localconfig = {
                     icon_size: '32',
                 },
                 {
-                    url: "https://gpt.ahaigege.com",
-                    name: "GPT",
-                    desc: "online GPT demo",
+                    url: "https://at.ahaigege.com",
+                    name: "chat",
+                    desc: "online chat ai demo",
                     icon_size: '32',
                 },
                 {
@@ -86,6 +86,36 @@ export const localconfig = {
                 //   name: "About me",
                 //   desc: "Personal website",
                 // },
+            ],
+        },
+        {
+            name: "Tools",
+            icon: `<svg xmlns="http://www.w3.org/2000/svg" class="svg-icon" fill="currentColor" viewBox="0 0 16 16">`,
+            quickLinkList: [
+                {
+                    url: "https://chat2.jinshutuan.com/",
+                    name: "ChatGPT",
+                    desc: "ChatGPT that works in mainland China",
+                    icon_size: '32',
+                },
+                {
+                    url: "https://example.com/",
+                    name: "example",
+                    desc: "example.com",
+                    icon_size: '32',
+                },
+                {
+                    url: "https://example.com/",
+                    name: "example",
+                    desc: "example.com",
+                    icon_size: '32',
+                },
+                {
+                    url: "https://example.com/",
+                    name: "example",
+                    desc: "example.com",
+                    icon_size: '32',
+                },
             ],
         },
         {
@@ -153,5 +183,6 @@ export const localconfig = {
                 },
             ],
         },
+
     ],
 };
