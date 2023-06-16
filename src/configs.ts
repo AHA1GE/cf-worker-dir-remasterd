@@ -69,28 +69,30 @@ export const localconfig = {
                     desc: "Redir to NAS",
                     icon_size: '32',
                 },
-                {
-                    url: "https://at.ahaigege.com",
-                    name: "chat",
-                    desc: "online chat ai demo",
-                    icon_size: '32',
-                },
+                // {
+                //     url: "https://at.ahaigege.com",
+                //     name: "about",
+                //     desc: "info about Hai",
+                //     icon_size: '32',
+                // },
                 {
                     url: "https://dweet.io/follow/zeropi",
                     name: "0Pi",
                     desc: "zero pi sbc info.",
                     icon_size: '16',
                 },
-                // {
-                //   url: "https://ysun.site",
-                //   name: "About me",
-                //   desc: "Personal website",
-                // },
+                {
+                    url: "https://ysun.site",
+                    name: "About me",
+                    desc: "Personal website",
+                    icon_size: '32',
+                },
             ],
         },
         {
             name: "Tools",
-            icon: `<svg xmlns="http://www.w3.org/2000/svg" class="svg-icon" fill="currentColor" viewBox="0 0 16 16">`,
+            icon: `<svg xmlns="http://www.w3.org/2000/svg" class="svg-icon" fill="currentColor" viewBox="0 0 16 16">
+            </svg>`,
             quickLinkList: [
                 {
                     url: "https://chat2.jinshutuan.com/",
