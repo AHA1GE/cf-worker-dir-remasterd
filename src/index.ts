@@ -6,7 +6,6 @@ let config = localconfig;
 // 处理请求的函数
 export default {
   async fetch(request: Request, env: any) {
-    1
     try {
       if (!convertToBoolean(env.useLocal_CONFIG) && env.remoteURI) {
         config = await (await fetch(env.remoteURI + "config.json")).json();
