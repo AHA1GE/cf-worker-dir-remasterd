@@ -6,7 +6,7 @@ export const localconfig = {
     useLocal_HEAD: true, //use local dynamicHeads or not
     useLocal_JS: true, //use local dynamic.js or not
     useLocal_CSS: false, //use local dynamic.css or not
-    remoteURI: "https://raw.githubusercontent.com/AHA1GE/cf-worker-dir-remasterd/main/src/", //remote resources URI
+    remoteURI: "https://raw.githubusercontent.com/AHA1GE/cf-worker-dir-remasterd/remote-resources/src/", //remote resources URI
     faviconGetter: "https://favicon.ahaigege.com/?url=", //favicon getter
 
     // 网页内容选项
