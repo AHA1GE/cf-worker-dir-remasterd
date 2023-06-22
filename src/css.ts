@@ -149,13 +149,13 @@ export const localCSS = `
         z-index: 1;
         width: 100%;
         padding-left: 1rem;
-        padding-top: 1rem;
-        padding-bottom: 1rem;
+        padding-top: 1.5rem;
+        padding-bottom: 1.5rem;
         padding-right: 1rem;
-        margin-left: 2rem;
-        margin-right: 2rem;
-        margin-top: 1rem;
-        margin-bottom: 1rem;
+        margin-left: 0rem;
+        margin-right: 0rem;
+        margin-top: 0rem;
+        margin-bottom: 0rem;
         backdrop-filter: blur(1rem);
     }
 
