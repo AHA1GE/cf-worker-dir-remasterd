@@ -152,6 +152,11 @@ export const localCSS = `
         padding-top: 1rem;
         padding-bottom: 1rem;
         padding-right: 1rem;
+        margin-left: 2rem;
+        margin-right: 2rem;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        backdrop-filter: blur(1rem);
     }
 
     div.search-engine-wrapper>div.search-engine-container{
