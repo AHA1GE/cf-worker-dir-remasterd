@@ -150,6 +150,7 @@
         padding-top: 1rem;
         padding-bottom: 1rem;
         padding-right: 1rem;
+        backdrop-filter: blur(2rem);
     }
 
     div.search-engine-wrapper>div.search-engine-container {

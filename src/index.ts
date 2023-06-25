@@ -166,10 +166,7 @@ async function generateDynamicHead(): Promise<string> {
       headElement("link", [`href="${remoteCSSURI}"`, 'rel="stylesheet"'])
     );
   } else {
-    // headList.push(headElement("link", ["href=\"https://cdn.jsdelivr.net/gh/chenkerun2000/cf-worker-dir@0.1.10.1/style.css\"", "rel=\"stylesheet\""]),);
-    // headList.push(element("script", ["src=\"https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js\""], ""),);
-    // headList.push(headElement("link", ["href=\"https://cdn.jsdelivr.net/npm/semantic-superhero-ui-css@1.0.10/semantic.min.css\"", "rel=\"stylesheet\""]),);
-    // headList.push(element("script", ["src=\"https://cdn.jsdelivr.net/npm/semantic-superhero-ui-css@1.0.10/semantic.min.js\""], ""),);
+    // fallback to local CSS, impletemented in generateDynamicCSS()
   }
   const head: string = headList.join("\n");
   if (config.useLocal_HEAD) {
@@ -245,8 +242,7 @@ function generateDynamicJS(): string {
     return pageJS;
   } else {
     //如果使用远程资源返回远程js的ref
-    const remoteJS = `<script src="remote.js" defer=""></script>`;
-    return remoteJS.replace(`remote.js`, config.remoteURI + "index.js");
+    return `<script src="remote.js" defer=""></script>`.replace(`remote.js`, config.remoteURI + "index.js");
   }
 }
 
