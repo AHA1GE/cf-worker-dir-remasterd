@@ -13,17 +13,6 @@
         height: auto;
         background-color: #222222;
         color: #f1f1f1;
-        /* background-image: linear-gradient(215deg,
-                rgba(73, 145, 64, 0.99),
-                rgba(58, 158, 158, 0.99),
-                rgba(59, 82, 146, 0.99),
-                rgba(150, 59, 142, 0.99),
-                rgba(153, 55, 55, 0.99),
-                rgba(168, 103, 50, 0.99),
-                rgba(139, 153, 46, 0.99));
-            background-size: 100%;
-            animation: backGroundMove 60s ease infinite; 
-        */
     }
 
     @media (prefers-color-scheme: light) {
@@ -52,8 +41,6 @@
             color: #f1f1f1;
             background-color: rgba(100, 100, 100, 0.1);
         }
-
-        div.scrollable>main.main>div.quicklink-div>div.quicklink>div.four-stackable-cards>a.card>div.content>div.header {}
     }
 
     header.header {
@@ -462,20 +449,6 @@
         text-decoration: none;
     }
 
-    @keyframes backGroundMove {
-        0% {
-            background-position: 0% 0%;
-        }
-
-        50% {
-            background-position: 100% 100%;
-        }
-
-        100% {
-            background-position: 0% 0%;
-        }
-    }
-
     /* 通用样式 */
     .prevent-select {
         /* Safari */
@@ -613,52 +586,51 @@
     }
 
     /* 滚动条样式 scroll bar css */
-    /* Set the width of the scrollbar */
-    body ::-webkit-scrollbar {
-        -webkit-appearance: none;
+    /* WebKit */
+    ::-webkit-scrollbar {
         width: 8px;
+        background-color: transparent;
     }
 
-    /* Set the background color of the scrollbar track to transparent */
-    body ::-webkit-scrollbar-track {
-        background: transparent;
-        border-radius: 0;
+    ::-webkit-scrollbar-track {
+        background-color: transparent;
     }
 
-    /* Set the color and style of the scrollbar handle */
-    body ::-webkit-scrollbar-thumb {
-        cursor: pointer;
-        border-radius: 5px;
-        background: rgba(0, 0, 0, .25);
-        -webkit-transition: color .2s ease;
-        transition: color .2s ease;
+    ::-webkit-scrollbar-thumb {
+        background-color: #cccccc;
+        border-radius: 4px;
     }
 
-    /* Set the color of the scrollbar handle on hover */
     ::-webkit-scrollbar-thumb:hover {
-        background-color: #a8a8a8;
+        background-color: #999999;
     }
 
-    /* Set the width and color of the scrollbar */
-    * {
-        scrollbar-width: thin;
-        scrollbar-color: #c3c3c3 transparent;
-    }
+    /* Mozilla Firefox */
+    /* Please note that Firefox only supports custom scrollbars in its dark theme */
+    /* To enable this style, make sure the user has set their browser to use the dark theme */
 
-    /* Set the color of the scrollbar handle on hover */
-    *::-moz-scrollbar-thumb:hover {
-        background-color: #a8a8a8;
-    }
+    /* Track */
+    @-moz-document url-prefix() {
+        scrollbar {
+            -moz-appearance: none !important;
+        }
 
-    /* Set the width and color of the scrollbar */
-    * {
-        scrollbar-width: thin;
-        scrollbar-color: #c3c3c3 transparent;
-        -ms-overflow-style: -ms-autohiding-scrollbar;
-    }
+        scrollbar[orient="vertical"] {
+            width: 8px !important;
+            background-color: transparent;
+        }
 
-    /* Set the color of the scrollbar handle on hover */
-    *::-webkit-scrollbar-thumb:hover,
-    *::-moz-scrollbar-thumb:hover {
-        background-color: #a8a8a8;
+        scrollbar[orient="horizontal"] {
+            height: 8px !important;
+            background-color: transparent;
+        }
+
+        scrollbar thumb {
+            background-color: #cccccc !important;
+            border-radius: 4px !important;
+        }
+
+        scrollbar thumb:hover {
+            background-color: #999999 !important;
+        }
     }
