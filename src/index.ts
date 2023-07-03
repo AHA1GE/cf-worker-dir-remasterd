@@ -100,14 +100,14 @@ async function renderHTML(): Promise<string> {
   const dynamicDiv2: string = renderDynamicDiv2();
   const dynamicDiv3: string = renderDynamicDiv3();
   const dynamicJS: string = generateDynamicJS();
-  const dynamicCSS: string = generateDynamicCSS();
+  // const dynamicCSS: string = await generateDynamicCSS();
   let html = staticHTML
     .replace('<head src="/dynamicHeads.html"></head>', `${dynamicHead}`)
     .replace("<header></header>", `${dynamicDiv1}`)
     .replace("<main></main>", `${dynamicDiv2}`)
     .replace("<footer></footer>", `${dynamicDiv3}`)
     .replace('<script src="/dynamic.js"></script>', `${dynamicJS}`)
-    .replace('<style src="/dynamic.css"></style>', `${dynamicCSS}`);
+  // .replace('<style src="/dynamic.css"></style>', `${dynamicCSS}`);
   html = html;
   return html;
 }
@@ -158,16 +158,9 @@ async function generateDynamicHead(): Promise<string> {
       'rel="icon"',
       'href="https://ysun.site/images/favicon.ico"',
     ]),
+    element("style", [], await generateDynamicCSS()),
     "</head>",
   ];
-  if (!config.useLocal_CSS) {
-    const remoteCSSURI: string = `${config.remoteURI}index.css`;
-    headList.push(
-      headElement("link", [`href="${remoteCSSURI}"`, 'rel="stylesheet"'])
-    );
-  } else {
-    // fallback to local CSS, impletemented in generateDynamicCSS()
-  }
   const head: string = headList.join("\n");
   if (config.useLocal_HEAD) {
     return head;
@@ -250,13 +243,15 @@ function generateDynamicJS(): string {
  * 生成 css 的函数
  * @returns {string} 以字符串返回的 css
  */
-function generateDynamicCSS(): string {
+async function generateDynamicCSS(): Promise<string> {
   if (config.useLocal_CSS) {
     //如果使用本地资源返回css
     return localCSS;
   } else {
-    const noLocalCSS = `<style></style>`;
-    return noLocalCSS; //use generateDynamicHead() to link to remote css
+    //如果使用远程资源fetch远程css并返回
+    const remoteCSSURI: string = `${config.remoteURI}index.css`;
+    return fetch(remoteCSSURI)
+      .then((response) => response.text());
   }
 }
 
