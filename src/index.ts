@@ -10,7 +10,7 @@ export default {
       if (!convertToBoolean(env.useLocal_CONFIG) && env.remoteURI) {
         config = await (await fetch(env.remoteURI + "config.json")).json();
       } else if (!convertToBoolean(env.useLocal_CONFIG) && !env.remoteURI) {
-        throw new Error("No remote resources URI found.");
+        throw new Error("Remote resources URI NOT found.");
       }
     } catch (e) {
       console.log(e);
@@ -26,10 +26,10 @@ export default {
       if (!convertToBoolean(env.useLocal_CSS)) {
         config.useLocal_CSS = env.useLocal_CSS;
       }
-      if (!env.remoteURI) {
+      if (env.remoteURI && /^(https?|ftp):\/\/[^\s/$.?#].[^\s/]*\/?$/.test(env.remoteURI)) {
         config.remoteURI = env.remoteURI;
       }
-      if (!env.faviconGetter) {
+      if (env.faviconGetter && /^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$/.test(env.faviconGetter)) {
         config.faviconGetter = env.faviconGetter;
       }
     } catch (e) {
@@ -69,7 +69,7 @@ function headElement(tag: string, attrs: string[]): string {
 
 /**
  * 用于把字符串转换成布尔值的工具函数
- * @param input 输入，可以是布尔或者字符串，如果是字符串，只有"true"会被转换为true，如果不是 true，false，空字符串 会抛出错误
+ * @param input 输入，可以是布尔或者字符串，如果是字符串，只有"true"会被转换为true，如果不是 "true"，"false" 或 ""，会抛出错误
  * @returns {boolean}  以布尔返回的输出，如果输入不是布尔或者字符串，会抛出错误
  */
 function convertToBoolean(input: unknown): boolean | never {
@@ -88,6 +88,9 @@ function convertToBoolean(input: unknown): boolean | never {
   }
 }
 
+
+
+
 /**
  * 生成 HTML 页面的函数
  * @returns {string}  以字符串返回的页面
@@ -100,14 +103,14 @@ async function renderHTML(): Promise<string> {
   const dynamicDiv2: string = renderDynamicDiv2();
   const dynamicDiv3: string = renderDynamicDiv3();
   const dynamicJS: string = generateDynamicJS();
-  const dynamicCSS: string = generateDynamicCSS();
+  // const dynamicCSS: string = await generateDynamicCSS();
   let html = staticHTML
     .replace('<head src="/dynamicHeads.html"></head>', `${dynamicHead}`)
     .replace("<header></header>", `${dynamicDiv1}`)
     .replace("<main></main>", `${dynamicDiv2}`)
     .replace("<footer></footer>", `${dynamicDiv3}`)
     .replace('<script src="/dynamic.js"></script>', `${dynamicJS}`)
-    .replace('<style src="/dynamic.css"></style>', `${dynamicCSS}`);
+  // .replace('<style src="/dynamic.css"></style>', `${dynamicCSS}`);
   html = html;
   return html;
 }
@@ -158,19 +161,9 @@ async function generateDynamicHead(): Promise<string> {
       'rel="icon"',
       'href="https://ysun.site/images/favicon.ico"',
     ]),
+    element("style", [], await generateDynamicCSS()),
     "</head>",
   ];
-  if (!config.useLocal_CSS) {
-    const remoteCSSURI: string = `${config.remoteURI}index.css`;
-    headList.push(
-      headElement("link", [`href="${remoteCSSURI}"`, 'rel="stylesheet"'])
-    );
-  } else {
-    // headList.push(headElement("link", ["href=\"https://cdn.jsdelivr.net/gh/chenkerun2000/cf-worker-dir@0.1.10.1/style.css\"", "rel=\"stylesheet\""]),);
-    // headList.push(element("script", ["src=\"https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js\""], ""),);
-    // headList.push(headElement("link", ["href=\"https://cdn.jsdelivr.net/npm/semantic-superhero-ui-css@1.0.10/semantic.min.css\"", "rel=\"stylesheet\""]),);
-    // headList.push(element("script", ["src=\"https://cdn.jsdelivr.net/npm/semantic-superhero-ui-css@1.0.10/semantic.min.js\""], ""),);
-  }
   const head: string = headList.join("\n");
   if (config.useLocal_HEAD) {
     return head;
@@ -245,8 +238,7 @@ function generateDynamicJS(): string {
     return pageJS;
   } else {
     //如果使用远程资源返回远程js的ref
-    const remoteJS = `<script src="remote.js" defer=""></script>`;
-    return remoteJS.replace(`remote.js`, config.remoteURI + "index.js");
+    return `<script src="remote.js" defer=""></script>`.replace(`remote.js`, config.remoteURI + "index.js");
   }
 }
 
@@ -254,13 +246,15 @@ function generateDynamicJS(): string {
  * 生成 css 的函数
  * @returns {string} 以字符串返回的 css
  */
-function generateDynamicCSS(): string {
+async function generateDynamicCSS(): Promise<string> {
   if (config.useLocal_CSS) {
     //如果使用本地资源返回css
     return localCSS;
   } else {
-    const noLocalCSS = `<style></style>`;
-    return noLocalCSS; //use generateDynamicHead() to link to remote css
+    //如果使用远程资源fetch远程css并返回
+    const remoteCSSURI: string = `${config.remoteURI}index.css`;
+    return fetch(remoteCSSURI)
+      .then((response) => response.text());
   }
 }
 
