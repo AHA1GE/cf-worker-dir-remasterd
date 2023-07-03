@@ -593,6 +593,7 @@
     }
 
     ::-webkit-scrollbar-track {
+        width: 12px;
         background-color: transparent;
     }
 
