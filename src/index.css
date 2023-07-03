@@ -609,6 +609,7 @@
         margin: 1px;
         padding: 1px;
         width: 7px;
+        box-sizing: border-box;
         background-color: transparent;
     }
 
@@ -623,34 +624,4 @@
 
     ::-webkit-scrollbar-thumb:hover {
         background-color: #cccccc;
-    }
-
-    /* Mozilla Firefox */
-    /* Please note that Firefox only supports custom scrollbars in its dark theme */
-    /* To enable this style, make sure the user has set their browser to use the dark theme */
-
-    /* Track */
-    @-moz-document url-prefix() {
-        scrollbar {
-            -moz-appearance: none !important;
-        }
-
-        scrollbar[orient="vertical"] {
-            width: 8px !important;
-            background-color: transparent;
-        }
-
-        scrollbar[orient="horizontal"] {
-            height: 8px !important;
-            background-color: transparent;
-        }
-
-        scrollbar thumb {
-            background-color: #cccccc !important;
-            border-radius: 4px !important;
-        }
-
-        scrollbar thumb:hover {
-            background-color: #999999 !important;
-        }
     }
