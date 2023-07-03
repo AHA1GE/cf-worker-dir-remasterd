@@ -599,7 +599,7 @@
     ::-webkit-scrollbar-thumb {
         background-color: #cccccc;
         border-radius: 4px;
-        padding: 2px;
+        margin: 2px;
     }
 
     ::-webkit-scrollbar-thumb:hover {
