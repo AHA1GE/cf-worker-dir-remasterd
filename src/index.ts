@@ -10,26 +10,26 @@ export default {
       if (!convertToBoolean(env.useLocal_CONFIG) && env.remoteURI) {
         config = await (await fetch(env.remoteURI + "config.json")).json();
       } else if (!convertToBoolean(env.useLocal_CONFIG) && !env.remoteURI) {
-        throw new Error("No remote resources URI found.");
+        throw new Error("Remote resources URI NOT found.");
       }
     } catch (e) {
       console.log(e);
     }
     //尝试从环境变量中获取配置
     try {
-      if (!convertToBoolean(env.useLocal_HEAD)) {
+      if (convertToBoolean(env.useLocal_HEAD)) {
         config.useLocal_HEAD = env.useLocal_HEAD;
       }
-      if (!convertToBoolean(env.useLocal_JS)) {
+      if (convertToBoolean(env.useLocal_JS)) {
         config.useLocal_JS = env.useLocal_JS;
       }
-      if (!convertToBoolean(env.useLocal_CSS)) {
+      if (convertToBoolean(env.useLocal_CSS)) {
         config.useLocal_CSS = env.useLocal_CSS;
       }
-      if (!env.remoteURI) {
+      if (env.remoteURI && /^(https?|ftp):\/\/[^\s/$.?#].[^\s/]*\/?$/.test(env.remoteURI)) {
         config.remoteURI = env.remoteURI;
       }
-      if (!env.faviconGetter) {
+      if (env.faviconGetter && /^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$/.test(env.faviconGetter)) {
         config.faviconGetter = env.faviconGetter;
       }
     } catch (e) {
@@ -69,7 +69,7 @@ function headElement(tag: string, attrs: string[]): string {
 
 /**
  * 用于把字符串转换成布尔值的工具函数
- * @param input 输入，可以是布尔或者字符串，如果是字符串，只有"true"会被转换为true，如果不是 true，false，空字符串 会抛出错误
+ * @param input 输入，可以是布尔或者字符串，如果是字符串，只有"true"会被转换为true，如果不是 "true"，"false" 或 ""，会抛出错误
  * @returns {boolean}  以布尔返回的输出，如果输入不是布尔或者字符串，会抛出错误
  */
 function convertToBoolean(input: unknown): boolean | never {
@@ -87,6 +87,9 @@ function convertToBoolean(input: unknown): boolean | never {
     throw new Error("Invalid input type");
   }
 }
+
+
+
 
 /**
  * 生成 HTML 页面的函数
