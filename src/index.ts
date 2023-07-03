@@ -17,13 +17,13 @@ export default {
     }
     //尝试从环境变量中获取配置
     try {
-      if (convertToBoolean(env.useLocal_HEAD)) {
+      if (!convertToBoolean(env.useLocal_HEAD)) {
         config.useLocal_HEAD = env.useLocal_HEAD;
       }
-      if (convertToBoolean(env.useLocal_JS)) {
+      if (!convertToBoolean(env.useLocal_JS)) {
         config.useLocal_JS = env.useLocal_JS;
       }
-      if (convertToBoolean(env.useLocal_CSS)) {
+      if (!convertToBoolean(env.useLocal_CSS)) {
         config.useLocal_CSS = env.useLocal_CSS;
       }
       if (env.remoteURI && /^(https?|ftp):\/\/[^\s/$.?#].[^\s/]*\/?$/.test(env.remoteURI)) {
