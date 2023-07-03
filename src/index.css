@@ -599,6 +599,7 @@
     ::-webkit-scrollbar-thumb {
         background-color: #cccccc;
         border-radius: 4px;
+        box-sizing: border-box;
         margin: 2px;
     }
 
