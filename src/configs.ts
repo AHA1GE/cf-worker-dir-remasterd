@@ -102,9 +102,9 @@ export const localconfig = {
                     icon_size: '32',
                 },
                 {
-                    url: "https://example.com/",
-                    name: "example",
-                    desc: "example.com",
+                    url: "https://chat.openai.com/",
+                    name: "ChatGPT",
+                    desc: "ChatGPT by OpenAI",
                     icon_size: '32',
                 },
                 {
@@ -140,9 +140,9 @@ export const localconfig = {
                     icon_size: '32',
                 },
                 {
-                    url: "https://www.csdn.net",
-                    name: "CSDN",
-                    desc: "Chinese technology blog",
+                    url: "dash.cloudflare.com",
+                    name: "Cloudflare",
+                    desc: "Cloudflare dashboard",
                     icon_size: '32',
                 },
                 {
