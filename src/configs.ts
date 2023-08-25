@@ -96,9 +96,9 @@ export const localconfig = {
                 </svg>`,
             quickLinkList: [
                 {
-                    url: "https://chat2.jinshutuan.com/",
-                    name: "ChatGPT",
-                    desc: "ChatGPT that works in mainland China",
+                    url: "https://www.calculator.net/",
+                    name: "Calculators",
+                    desc: "Dirrerent kinds of calculators",
                     icon_size: '32',
                 },
                 {
@@ -108,15 +108,15 @@ export const localconfig = {
                     icon_size: '32',
                 },
                 {
-                    url: "https://example.com/",
-                    name: "example",
-                    desc: "example.com",
+                    url: "https://r.aha1.top/",
+                    name: "Music Unlock",
+                    desc: "Decrypt music files.",
                     icon_size: '32',
                 },
                 {
-                    url: "https://example.com/",
-                    name: "example",
-                    desc: "example.com",
+                    url: "https://it-tools.tech/",
+                    name: "IT Tools",
+                    desc: "Data convertion tools",
                     icon_size: '32',
                 },
             ],
@@ -140,7 +140,7 @@ export const localconfig = {
                     icon_size: '32',
                 },
                 {
-                    url: "dash.cloudflare.com",
+                    url: "https://dash.cloudflare.com",
                     name: "Cloudflare",
                     desc: "Cloudflare dashboard",
                     icon_size: '32',
