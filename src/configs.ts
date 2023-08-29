@@ -69,24 +69,24 @@ export const localconfig = {
                     desc: "Redir to NAS",
                     icon_size: '32',
                 },
-                // {
-                //     url: "https://at.ahaigege.com",
-                //     name: "about",
-                //     desc: "info about Hai",
-                //     icon_size: '32',
-                // },
+                {
+                    url: "https://v.ahaigege.com",
+                    name: "Web-Next",
+                    desc: "Web Next on Vercel",
+                    icon_size: '32',
+                },
                 {
                     url: "https://dweet.io/follow/zeropi",
                     name: "0Pi",
                     desc: "zero pi sbc info.",
                     icon_size: '16',
                 },
-                {
-                    url: "https://ysun.site",
-                    name: "About me",
-                    desc: "Personal website",
-                    icon_size: '32',
-                },
+                // {
+                //     url: "https://ysun.site",
+                //     name: "About me",
+                //     desc: "Personal website",
+                //     icon_size: '32',
+                // },
             ],
         },
         {
