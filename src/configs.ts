@@ -64,9 +64,9 @@ export const localconfig = {
                     icon_size: '32',
                 },
                 {
-                    url: "https://nas.ahaigege.com:8443",
+                    url: "https://jlfu.ahaigege.com:8443",
                     name: "NAS",
-                    desc: "Redir to NAS",
+                    desc: "Go to NAS by AAAA record",
                     icon_size: '32',
                 },
                 {
