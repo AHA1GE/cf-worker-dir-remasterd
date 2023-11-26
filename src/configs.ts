@@ -58,12 +58,6 @@ export const localconfig = {
             </svg>`,
             quickLinkList: [
                 {
-                    url: "https://file.aha1.top",
-                    name: "Seafile",
-                    desc: "Seafile Server",
-                    icon_size: '32',
-                },
-                {
                     url: "https://jlfu.ahaigege.com:8443",
                     name: "NAS",
                     desc: "Go to NAS by AAAA record",
@@ -81,12 +75,12 @@ export const localconfig = {
                     desc: "zero pi sbc info.",
                     icon_size: '16',
                 },
-                // {
-                //     url: "https://ysun.site",
-                //     name: "About me",
-                //     desc: "Personal website",
-                //     icon_size: '32',
-                // },
+                {
+                    url: "https://ysun.site",
+                    name: "About me",
+                    desc: "Personal website",
+                    icon_size: '32',
+                },
             ],
         },
         {
