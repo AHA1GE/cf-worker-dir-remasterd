@@ -96,7 +96,7 @@ export const localconfig = {
                     icon_size: '32',
                 },
                 {
-                    url: "https://qlinkto.cn/JLFU0",
+                    url: "https://qlinkto.cn/JLF532X",
                     name: "TS532X (qnap link)",
                     desc: "Go to NAS TS532X by qnap link.",
                     icon_size: '32',
