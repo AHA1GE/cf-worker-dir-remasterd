@@ -51,16 +51,15 @@ export const localconfig = {
     quickLinkLists: [
         //Url list
         {
-            name: "Local",
-            icon: `<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" class="svg-icon" fill="currentColor" viewBox="0 0 16 16">
-              <path d="M4.5 5a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1zM3 4.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0z" />
-              <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2H8.5v3a1.5 1.5 0 0 1 1.5 1.5h5.5a.5.5 0 0 1 0 1H10A1.5 1.5 0 0 1 8.5 14h-1A1.5 1.5 0 0 1 6 12.5H.5a.5.5 0 0 1 0-1H6A1.5 1.5 0 0 1 7.5 10V7H2a2 2 0 0 1-2-2V4zm1 0v1a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1zm6 7.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5z" />
+            name: "My",
+            icon: `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
+                <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664z"/>
             </svg>`,
             quickLinkList: [
                 {
-                    url: "https://jlfu.ahaigege.com:8443",
-                    name: "NAS",
-                    desc: "Go to NAS by AAAA record",
+                    url: "https://r.aha1.top/",
+                    name: "Music Unlock",
+                    desc: "Decrypt music files.",
                     icon_size: '32',
                 },
                 {
@@ -79,6 +78,39 @@ export const localconfig = {
                     url: "https://ysun.site",
                     name: "About me",
                     desc: "Personal website",
+                    icon_size: '32',
+                },
+            ],
+        },
+        {
+            name: "NAS",
+            icon: `<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" class="svg-icon" fill="currentColor" viewBox="0 0 16 16">
+              <path d="M4.5 5a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1zM3 4.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0z" />
+              <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2H8.5v3a1.5 1.5 0 0 1 1.5 1.5h5.5a.5.5 0 0 1 0 1H10A1.5 1.5 0 0 1 8.5 14h-1A1.5 1.5 0 0 1 6 12.5H.5a.5.5 0 0 1 0-1H6A1.5 1.5 0 0 1 7.5 10V7H2a2 2 0 0 1-2-2V4zm1 0v1a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1zm6 7.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5z" />
+            </svg>`,
+            quickLinkList: [
+                {
+                    url: "https://jlfu.ahaigege.com:8443",
+                    name: "TS466C (DDNS)",
+                    desc: "Go to NAS TS466C by AAAA record.",
+                    icon_size: '32',
+                },
+                {
+                    url: "https://qlinkto.cn/JLFU0",
+                    name: "TS532X (qnap link)",
+                    desc: "Go to NAS TS532X by qnap link.",
+                    icon_size: '32',
+                },
+                {
+                    url: "https://ts466c.ahaigege.com",
+                    name: "TS466C (warp tunnel)",
+                    desc: "Go to NAS TS466C by warp tunnel.",
+                    icon_size: '32',
+                },
+                {
+                    url: "https://ts532x.ahaigege.com",
+                    name: "TS532X (warp tunnel)",
+                    desc: "Go to NAS TS532X by warp tunnel.",
                     icon_size: '32',
                 },
             ],
