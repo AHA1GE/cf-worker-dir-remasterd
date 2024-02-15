@@ -57,9 +57,9 @@ export const localconfig = {
             </svg>`,
             quickLinkList: [
                 {
-                    url: "https://r.aha1.top/",
-                    name: "Music Unlock",
-                    desc: "Decrypt music files.",
+                    url: "https://gi.aha1.top/",
+                    name: "GI tools",
+                    desc: "Anime game cheese.",
                     icon_size: '32',
                 },
                 {
