@@ -58,7 +58,7 @@ export const localconfig = {
             quickLinkList: [
                 {
                     url: "https://gi.aha1.top/",
-                    name: "GI tools",
+                    name: "GI Tools",
                     desc: "Anime game cheese.",
                     icon_size: '32',
                 },
