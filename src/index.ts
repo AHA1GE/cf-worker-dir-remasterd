@@ -163,6 +163,7 @@ async function generateDynamicHead(): Promise<string> {
       'href="https://ysun.site/images/favicon.ico"',
     ]),
     element("style", [], await generateDynamicCSS()),
+    element("script", ['async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5526526482489599" crossorigin="anonymous"'], ''),
     "</head>",
   ];
   const head: string = headList.join("\n");
