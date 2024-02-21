@@ -151,6 +151,7 @@ async function generateDynamicHead(): Promise<string> {
       'name="viewport" content="width=device-width, initial-scale=1.0"',
     ]),
     headElement("meta", ['http-equiv="X-UA-Compatible" content="ie=edge"']),
+    headElement("meta", ['name="google-adsense-account" content="ca-pub-5526526482489599"']),
     element("title", [], `${config.title} - ${config.subtitle}`),
     headElement("link", [
       'rel="apple-touch-icon"',
