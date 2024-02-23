@@ -37,10 +37,39 @@ export default {
     }
 
     // 构造 HTML 页面
-    const html_FINAL = await renderHTML();
-    return new Response(html_FINAL, {
-      headers: { "content-type": "text/html;charset=UTF-8" },
-    });
+    //const html_FINAL = await renderHTML();
+    // return new Response(await renderHTML(), {
+    //   headers: { "content-type": "text/html;charset=UTF-8" },
+    // });
+
+    //parse the request url
+    const requestUrl = new URL(request.url);
+
+    //switch case, if vising the root return the page; visiting robots.txt return the robotsTXT; visiting ads.txt return the adsTXT; else return 404
+    switch (requestUrl.pathname.toLowerCase()) {
+      case "/":
+        return new Response(
+          await renderHTML(),
+          { headers: { "Content-Type": "text/html; charset=utf-8", "Cache-Control": "max-age=30" } }
+        );
+      case "/robots.txt":
+        return new Response( //use tobotsTXT from config, cache 1 year inmutable
+          config.robotsTXT,
+          { headers: { "Content-Type": "text/plain", "Cache-Control": "max-age=31536000, immutable" } }
+        );
+      case "/ads.txt":
+        return new Response( //use adsTXT from config, cache no cache
+          config.adsTXT,
+          { headers: { "Content-Type": "text/plain", "Cache-Control": "no-cache" } }
+        );
+      default:
+        return new Response(
+          "404 Not Found",
+          { status: 404, headers: { "Content-Type": "text/plain" } }
+        );
+    }
+
+
   },
 };
 
@@ -152,7 +181,6 @@ async function generateDynamicHead(): Promise<string> {
       'name="viewport" content="width=device-width, initial-scale=1.0"',
     ]),
     headElement("meta", ['http-equiv="X-UA-Compatible" content="ie=edge"']),
-    headElement("meta", ['name="google-adsense-account" content="ca-pub-5526526482489599"']),
     element("title", [], `${config.title} - ${config.subtitle}`),
     headElement("link", [
       'rel="apple-touch-icon"',

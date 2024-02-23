@@ -214,4 +214,8 @@ export const localconfig = {
         },
 
     ],
+
+    //通用配置
+    robotsTXT: ``,
+    adsTXT: `google.com, pub-5526526482489599, DIRECT, f08c47fec0942fa0`
 };
