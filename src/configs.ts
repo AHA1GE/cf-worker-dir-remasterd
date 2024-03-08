@@ -64,8 +64,8 @@ export const localconfig = {
                 },
                 {
                     url: "https://v.ahaigege.com",
-                    name: "Web-Next",
-                    desc: "Web Next on Vercel",
+                    name: "Lobe",
+                    desc: "Lobe on Vercel",
                     icon_size: '32',
                 },
                 {
