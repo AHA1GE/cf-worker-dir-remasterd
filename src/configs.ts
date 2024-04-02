@@ -93,7 +93,7 @@ export const localconfig = {
                     url: "https://jlfu.ahaigege.com:8443/",
                     name: "TS466C DDNS",
                     desc: "Go to NAS TS466C by AAAA record.",
-                    icon_size: '16',
+                    icon_size: '32',
                 },
                 {
                     url: "https://vnology.synology.me:5001/",
