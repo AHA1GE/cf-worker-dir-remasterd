@@ -98,22 +98,38 @@ export const localconfig = {
                 {
                     url: "https://vnology.synology.me:5001/",
                     name: "Vnology DDNS",
-                    desc: "Go to Virtl NAS by AAAA record. Use <a href='https://vno.aha1.top/' target='_blank'>Warp</a> if fail.",
+                    desc: "Go to Virtl NAS by AAAA record.",
+                    icon_size: '32',
+                },
+            ],
+        },
+        {
+            name: "Tunnels",
+            icon: `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-ethernet" viewBox="0 0 16 16">
+                <path d="M14 13.5v-7a.5.5 0 0 0-.5-.5H12V4.5a.5.5 0 0 0-.5-.5h-1v-.5A.5.5 0 0 0 10 3H6a.5.5 0 0 0-.5.5V4h-1a.5.5 0 0 0-.5.5V6H2.5a.5.5 0 0 0-.5.5v7a.5.5 0 0 0 .5.5h11a.5.5 0 0 0 .5-.5M3.75 11h.5a.25.25 0 0 1 .25.25v1.5a.25.25 0 0 1-.25.25h-.5a.25.25 0 0 1-.25-.25v-1.5a.25.25 0 0 1 .25-.25m2 0h.5a.25.25 0 0 1 .25.25v1.5a.25.25 0 0 1-.25.25h-.5a.25.25 0 0 1-.25-.25v-1.5a.25.25 0 0 1 .25-.25m1.75.25a.25.25 0 0 1 .25-.25h.5a.25.25 0 0 1 .25.25v1.5a.25.25 0 0 1-.25.25h-.5a.25.25 0 0 1-.25-.25zM9.75 11h.5a.25.25 0 0 1 .25.25v1.5a.25.25 0 0 1-.25.25h-.5a.25.25 0 0 1-.25-.25v-1.5a.25.25 0 0 1 .25-.25m1.75.25a.25.25 0 0 1 .25-.25h.5a.25.25 0 0 1 .25.25v1.5a.25.25 0 0 1-.25.25h-.5a.25.25 0 0 1-.25-.25z"/>
+                <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM1 2a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1z"/>\
+            </svg>`,
+            quickLinkList: [
+                {
+                    url: "https://vno.aha1.top/",
+                    name: "Vnology",
+                    desc: "Go to Synology NAS on PVE.",
                     icon_size: '32',
                 },
                 {
                     url: "https://ts466c.ahaigege.com/",
                     name: "TS466C",
-                    desc: "Go to NAS TS466C by warp tunnel.",
+                    desc: "Go to QNAP NAS TS466C.",
                     icon_size: '16',
                 },
                 {
                     url: "https://ts532x.ahaigege.com/",
                     name: "TS532X",
-                    desc: "Go to NAS TS532X by warp tunnel.",
+                    desc: "Go to QNAP NAS TS532X.",
                     icon_size: '16',
                 },
-            ],
+            ]
+
         },
         {
             name: "Tools",
