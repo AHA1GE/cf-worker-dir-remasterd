@@ -98,7 +98,7 @@ export const localconfig = {
                 {
                     url: "https://vnology.synology.me:5001/",
                     name: "Vnology DDNS",
-                    desc: "Go to Virtual NAS by AAAA record.",
+                    desc: "Go to Virtl NAS by AAAA record. Use <a href='https://vno.aha1.top/' target='_blank'>Warp</a> if fail.",
                     icon_size: '32',
                 },
                 {
