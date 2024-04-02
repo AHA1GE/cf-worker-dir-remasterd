@@ -57,12 +57,6 @@ export const localconfig = {
             </svg>`,
             quickLinkList: [
                 {
-                    url: "https://vno.aha1.top",
-                    name: "Vnology",
-                    desc: "Synology on Proxmox",
-                    icon_size: '48',
-                },
-                {
                     url: "https://gi.aha1.top/",
                     name: "GI Tools",
                     desc: "Anime game cheese.",
@@ -74,7 +68,12 @@ export const localconfig = {
                     desc: "Lobe on Vercel",
                     icon_size: '32',
                 },
-
+                {
+                    url: "https://dweet.io/follow/zeropi",
+                    name: "0Pi",
+                    desc: "my zero pi sbc info.",
+                    icon_size: '16',
+                },
                 {
                     url: "https://ysun.site",
                     name: "About me",
@@ -97,10 +96,10 @@ export const localconfig = {
                     icon_size: '16',
                 },
                 {
-                    url: "https://qlinkto.cn/JLF532X/",
-                    name: "TS532X qlink",
-                    desc: "Go to NAS TS532X by qnap link.",
-                    icon_size: '16',
+                    url: "https://vnology.synology.me:5001/",
+                    name: "Vnology DDNS",
+                    desc: "Go to Virtual NAS by AAAA record.",
+                    icon_size: '32',
                 },
                 {
                     url: "https://ts466c.ahaigege.com/",
