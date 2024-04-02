@@ -57,6 +57,12 @@ export const localconfig = {
             </svg>`,
             quickLinkList: [
                 {
+                    url: "https://vno.aha1.top",
+                    name: "Vnology",
+                    desc: "Synology on Proxmox",
+                    icon_size: '48',
+                },
+                {
                     url: "https://gi.aha1.top/",
                     name: "GI Tools",
                     desc: "Anime game cheese.",
@@ -68,12 +74,7 @@ export const localconfig = {
                     desc: "Lobe on Vercel",
                     icon_size: '32',
                 },
-                {
-                    url: "https://dweet.io/follow/zeropi",
-                    name: "0Pi",
-                    desc: "zero pi sbc info.",
-                    icon_size: '16',
-                },
+
                 {
                     url: "https://ysun.site",
                     name: "About me",
