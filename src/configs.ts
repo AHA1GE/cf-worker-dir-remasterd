@@ -92,13 +92,19 @@ export const localconfig = {
                 {
                     url: "https://jlfu.ahaigege.com:8443/",
                     name: "TS466C DDNS",
-                    desc: "Go to NAS TS466C by AAAA record.",
+                    desc: "Go to QNAP NAS TS466C.",
+                    icon_size: '32',
+                },
+                {
+                    url: "https://JLF532X.myqnapcloud.cn:5001/",
+                    name: "TS532X DDNS",
+                    desc: "Go to QNAP NAS TS532X.",
                     icon_size: '32',
                 },
                 {
                     url: "https://vnology.synology.me:5001/",
                     name: "Vnology DDNS",
-                    desc: "Go to Virtl NAS by AAAA record.",
+                    desc: "Go to Virtual Synology NAS.",
                     icon_size: '32',
                 },
             ],
@@ -111,12 +117,6 @@ export const localconfig = {
             </svg>`,
             quickLinkList: [
                 {
-                    url: "https://vno.aha1.top/",
-                    name: "Vnology",
-                    desc: "Go to Synology NAS on PVE.",
-                    icon_size: '32',
-                },
-                {
                     url: "https://ts466c.ahaigege.com/",
                     name: "TS466C",
                     desc: "Go to QNAP NAS TS466C.",
@@ -128,8 +128,13 @@ export const localconfig = {
                     desc: "Go to QNAP NAS TS532X.",
                     icon_size: '16',
                 },
+                {
+                    url: "https://vno.aha1.top/",
+                    name: "Vnology",
+                    desc: "Go to Virtual Synology NAS.",
+                    icon_size: '32',
+                },
             ]
-
         },
         {
             name: "Tools",
