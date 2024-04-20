@@ -1,6 +1,8 @@
     html {
         font-size: 15px;
         font-family: Arial, Helvetica, sans-serif;
+        width: 100vw;
+        height: 100vh;
         overflow-x: clip;
         overflow-y: scroll;
     }
@@ -9,8 +11,6 @@
         margin: 0px;
         padding: 0px;
         font-size: 1rem;
-        width: 100vw;
-        height: auto;
         background-color: #222222;
         color: #f1f1f1;
     }
@@ -313,8 +313,8 @@
         padding-left: 0rem;
         padding-right: 0rem;
         padding-bottom: 0rem;
-        overflow-x: clip;
-        overflow-y: scroll;
+        /* overflow-x: clip; */
+        /* overflow-y: scroll; */
         display: flex;
         flex-direction: column;
         justify-content: start;
