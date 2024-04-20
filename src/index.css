@@ -313,8 +313,8 @@
         padding-left: 0rem;
         padding-right: 0rem;
         padding-bottom: 0rem;
+        overflow-x: clip;
         overflow-y: scroll;
-        overflow-x: hidden;
         display: flex;
         flex-direction: column;
         justify-content: start;
