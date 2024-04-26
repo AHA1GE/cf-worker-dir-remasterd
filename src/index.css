@@ -1,18 +1,18 @@
     html {
         font-size: 15px;
         font-family: Arial, Helvetica, sans-serif;
-        width: 100vw;
-        height: 100vh;
-        overflow-x: clip;
-        overflow-y: scroll;
     }
 
     body {
+        width: 100vw;
+        height: 100vh;
         margin: 0px;
         padding: 0px;
         font-size: 1rem;
         background-color: #222222;
         color: #f1f1f1;
+        overflow-x: clip;
+        overflow-y: scroll;
     }
 
     @media (prefers-color-scheme: light) {
