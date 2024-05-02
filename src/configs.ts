@@ -63,17 +63,23 @@ export const localconfig = {
                     icon_size: '32',
                 },
                 {
-                    url: "https://v.ahaigege.com",
+                    url: "https://mb.aha1.top/",
+                    name: "Message Board",
+                    desc: "Leave me a message.",
+                    icon_size: '32',
+                },
+                {
+                    url: "https://v.ahaigege.com/",
                     name: "Lobe",
                     desc: "Lobe on Vercel",
                     icon_size: '32',
                 },
-                {
-                    url: "https://dweet.io/follow/zeropi",
-                    name: "0Pi",
-                    desc: "my zero pi sbc info.",
-                    icon_size: '16',
-                },
+                // {
+                //     url: "https://dweet.io/follow/zeropi",
+                //     name: "0Pi",
+                //     desc: "my zero pi sbc info.",
+                //     icon_size: '16',
+                // },
                 {
                     url: "https://ysun.site",
                     name: "About me",
