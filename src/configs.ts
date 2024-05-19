@@ -96,13 +96,13 @@ export const localconfig = {
             </svg>`,
             quickLinkList: [
                 {
-                    url: "https://jlfu.ahaigege.com:8443/",
+                    url: "https://ddns466c.ahaigege.com:8443/",
                     name: "TS466C DDNS",
                     desc: "Go to QNAP NAS TS466C.",
                     icon_size: '32',
                 },
                 {
-                    url: "https://JLF532X.myqnapcloud.cn:5001/",
+                    url: "https://ddns532x.ahaigege.com:8443/",
                     name: "TS532X DDNS",
                     desc: "Go to QNAP NAS TS532X.",
                     icon_size: '32',
