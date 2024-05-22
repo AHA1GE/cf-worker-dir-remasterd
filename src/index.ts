@@ -117,9 +117,6 @@ function convertToBoolean(input: unknown): boolean | never {
   }
 }
 
-
-
-
 /**
  * 生成 HTML 页面的函数
  * @returns {string}  以字符串返回的页面
@@ -443,7 +440,7 @@ function renderDynamicDiv2(): string {
       ) =>
         element(
           "a",
-          ['class="card"', `href=${url}`, 'target="_blank"', 'rel="noopener"'],
+          ['class="card"', `href=${url}`, 'target="_blank"', 'rel="noreferrer noopener"'],
           element(
             "div",
             ['class="content"'],
@@ -510,7 +507,7 @@ function renderDynamicDiv3(): string {
           'class="label"',
           'href="https://github.com/AHA1GE/cf-worker-dir-remasterd"',
           'target="_blank"',
-          'rel="noopener"',
+          'rel="noreferrer noopener"',
         ],
         element(
           "i",
@@ -537,7 +534,7 @@ function renderDynamicDiv3(): string {
           'class="label"',
           'href="https://github.com/AHA1GE/cf-worker-dir-remasterd"',
           'target="_blank"',
-          'rel="noopener"',
+          'rel="noreferrer noopener"',
         ],
         element(
           "i",
