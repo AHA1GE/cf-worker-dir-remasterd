@@ -406,12 +406,13 @@
     }
 
     div.scrollable>main.main>div.quicklink-div>div.quicklink>div.four-stackable-cards>a.card:hover {
-        box-shadow: 1rem 1rem 2rem 0rem rgba(255, 255, 255, 0.2),
-            -1rem -1rem 2rem 0rem rgba(0, 0, 0, 0.2),
-            inset 1rem 1rem 1rem 0rem rgba(255, 255, 255, 0.05),
-            inset -1rem -1rem 1rem 0rem rgba(200, 200, 200, 0.05);
         transition: all 0.2s ease-out !important;
         backdrop-filter: blur(10rem);
+        transform: translateY(-5px);
+        /* Lift the card up */
+        box-shadow: 1.5rem 1.5rem 3rem 0rem rgba(255, 255, 255, 0.3),
+            -1.5rem -1.5rem 3rem 0rem rgba(0, 0, 0, 0.3);
+        /* Enhance the shadow for a lifted effect */
     }
 
     div.scrollable>main.main>div.quicklink-div>div.quicklink>div.four-stackable-cards>a.card>div.content {
