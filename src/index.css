@@ -391,7 +391,7 @@
     }
 
     div.scrollable>main.main>div.quicklink-div>div.quicklink>div.four-stackable-cards>a.card {
-        transition: all 0.2s ease-in-out !important;
+        transition: all 0.2s ease-in-out 0s;
         text-decoration: none;
         flex-basis: calc(20%);
         margin-top: 1rem;
@@ -409,7 +409,7 @@
     }
 
     div.scrollable>main.main>div.quicklink-div>div.quicklink>div.four-stackable-cards>a.card:hover {
-        transition: all 0.2s ease-in-out !important;
+        transition: all 0.2s ease-in-out 0s;
         /* Lift the card up */
         transform: translateY(-5px);
         /* Adjust blur to simulate lift */
@@ -421,7 +421,7 @@
     }
 
     div.scrollable>main.main>div.quicklink-div>div.quicklink>div.four-stackable-cards>a.card:active {
-        transition: all 0.2s ease-in-out !important;
+        transition: all 0.1s ease-in-out 0s !important;
         /* Slightly lower than the hover effect to simulate press */
         transform: translateY(-2px);
         /* Adjust blur to simulate press */
